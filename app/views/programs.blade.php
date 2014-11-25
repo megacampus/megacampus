@@ -19,21 +19,26 @@
 	<div class="col-sm-2 text-left">
 
 	 	<!--Display the left panel with system options-->
-	 	<div class="well">
-			<ul class="nav nav-list">
-			 	<li class="nav-header"><h4>Main Menu</h4></li>
-				<li><a href="/">Home</a></li>
-				<li><a href="#">Campus</a></li>
-				<li><a href="/programs">Programs</a></li>
-				<li><a href="#">Courses</a></li>
-				<li><a href="#">Teachers</a></li>
-				<li><a href="#">Students</a></li>
-				<li><a href="#">Events</a></li>
-				<li class="divider"></li>
-				<br>
-				<li><a href="#">Help</a></li>
-			</ul>				
+	    <div class="panel panel-default">
+
+	        <div class="panel-heading">
+	          <h3 class="panel-title">Menu</h3>
+			</div>           
+
+			<table class= "table table-bordered table-hover" style="color:blue;">
+				
+				<tr><td>Campus</td></tr>
+				<tr><td><a href="/programs">Programs</a></td></tr>
+				<tr><td>Courses</td></tr>
+				<tr><td>Teachers</td></tr>
+				<tr><td>Students</td></tr>
+				<tr><td>Events</td></tr>
+				<tr><td>&nbsp</td></tr>
+				<tr><td>Help</td></tr>
+				
+			</table>
 		</div>
+
 	</div>
 
 
@@ -92,7 +97,7 @@
 						      <input name="search_value" type="text" placeholder='Searching Text...' class="form-control">
 
 						      <span class="input-group-btn">
-						        <button class="btn btn-primary" type="submit">Search</button>
+						        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
 						      </span>
 
 						    </div>
@@ -151,7 +156,7 @@
 									<!-- Form to handle Edit and Delte items-->
 									{{ Form::open(array(
 																			
-										'url' => 'programs/'. $program->id,							'class' => 'pull-right')) }}
+										'url' => 'programs/'. $program->id,'class' => 'pull-right')) }}
 
 										<!--'url' => Route::current()->getUri() .'/'. $program->id,
 										//		'class' => 'pull-right')) }}*-->
@@ -165,10 +170,9 @@
 								        	href="{{ URL::to('programs/' . $program->id . '/edit') }}">
 												Edit								        	
 								        </a>
-
-					                    {{ Form::hidden('_method', 'DELETE') }}
+								        {{ Form::hidden('_method', 'DELETE') }}
 					                    {{ Form::submit('Delete', array('class' => 'btn btn-sm  btn-primary')) }}
-					                
+					                     
 					                {{ Form::close() }}
 
 		  					       	</td>

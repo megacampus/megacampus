@@ -27,14 +27,14 @@
 	<!--This section appears by default if it is not specify-->
 	@section('header')
 
-		<!--link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css"-->
+		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!--difer makes the same effect of locate the javascript file at the bottom of html-body -->
-
 		<script difer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
 
 
 		<!--link href="http://bootstrapper.aws.af.cm/bundles/bootstrapper/css/bootstrap.min.css" media="all" type="text/css" rel="stylesheet">
@@ -73,7 +73,6 @@
 	<div class="collapse navbar-collapse">
 		
 		<ul class="nav navbar-nav" >
-			<li><a href="/">Home</a></li>
 			<li><a href="#">Campus</a></li>
 			<li><a href="/programs">Programs</a></li>
 			<li><a href="#">Courses</a></li>
@@ -83,7 +82,7 @@
 		</ul>
 		<div class="col-sm-12 col-md-1 pull-right">
 			<ul class="nav navbar-nav navbar-right">	
-				<li><a href="#">Logout</a></li>
+				<li><a href="#"><i class="fa fa-power-off"></i>&nbsp;Logout</a></li>
 			</ul>
 		</div>
 		
@@ -94,7 +93,7 @@
 @yield('body')
 	
 
- <footer style="display: block;background-color: black; color: #e9e9e9; padding:10px; border: 1px solid lightgray margin:0px">
+ <footer style="display: block;background-color: black; color: #e9e9e9; padding:10px; border: 1px solid lightgray margin:0px" >
 	<div class="container">
 		<div class="row" >
 			<div class="col-sm-3">
@@ -116,21 +115,29 @@
 				</ul>
 			</div>
 			<div class="col-sm-2">
-				<ul>
+				<ul class="list-unstyled">
 					<p>Follow up:</p>
-					<li><a href="#">Twitter</a></li>
-					<li><a href="#">Facebook</a></li>
-					<li><a href="#">Google +</a></li>
+					<li><a href="#"><i class="fa fa-twitter"></i>&nbsp;Twitter</a></li>
+					<li><a href="#"><i class="fa fa-facebook"></i>&nbsp;Facebook</a></li>
+					<li><a href="#"><i class="fa fa-google-plus"></i>&nbsp;Google +</a></li>
+					<li><a href="#"><i class="fa fa-github"></i>&nbsp;GitHub</a></li>
+					
 				</ul>
 			</div>
 			<div class="col-sm-2">
 				<p>Code by: TMTechnologies&reg</p>
 			</div>
+
 		</div>
 
 		
 	</div>
 
+	<div class="container">
+		<div class="row" >
+		<br><br><br><br><br><br><br><br><br>
+		</div>
+	</div>
 </footer>
 	
 
