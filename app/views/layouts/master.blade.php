@@ -73,12 +73,15 @@
 	<div class="collapse navbar-collapse">
 		
 		<ul class="nav navbar-nav" >
-			<li><a href="#">Campus</a></li>
+			<li><a href="#">Dashboard</a></li>
 			<li><a href="/programs">Programs</a></li>
-			<li><a href="#">Courses</a></li>
-			<li><a href="#">Teachers</a></li>
-			<li><a href="#">Students</a></li>
-			<li><a href="#">Events</a></li>
+			<li><a href="#">Admissions</a></li>
+			<li><a href="#">Employees</a></li>
+			<li><a href="#">Inventory</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Finances</a></li>
+			<li><a href="#">Security</a></li>
+			<li><a href="#">Settings</a></li>
 		</ul>
 		<div class="col-sm-12 col-md-1 pull-right">
 			<ul class="nav navbar-nav navbar-right">	

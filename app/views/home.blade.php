@@ -84,7 +84,7 @@
 			<div class="panel panel-default">
 	            <div class="panel-heading">
 
-					<h3 class="panel-title">This Montly Event</h3>
+					<h3 class="panel-title">Next Montly Event</h3>
 
 	           	</div>
 

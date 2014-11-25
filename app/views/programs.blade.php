@@ -32,7 +32,7 @@
 				<tr><td>Courses</td></tr>
 				<tr><td>Teachers</td></tr>
 				<tr><td>Students</td></tr>
-				<tr><td>Events</td></tr>
+				<tr><td>Calendar</td></tr>
 				<tr><td>&nbsp</td></tr>
 				<tr><td>Help</td></tr>
 				
