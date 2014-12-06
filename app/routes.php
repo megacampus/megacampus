@@ -34,17 +34,19 @@ Route::get('programs/import','ProgramController@import');
 
 Route::resource('programs', 'ProgramController');
 
-Route::get('/prueba', function (){
-
-	return View::make ('prueba');
-});
-
-
 Route::get('/', function (){
 
-	return View::make ('home');
+	return View::make ('home/home');
 });
 
+
+
+/////////////////////////////////////
+
+Route::get('/prueba', function (){
+
+	return View::make ('tirar/prueba');
+});
 
 
 

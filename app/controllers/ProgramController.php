@@ -25,6 +25,7 @@ class ProgramController extends \BaseController {
             'program_description' 	=> 'required' //|numeric'
         );
 
+	private $directory_files = "programs";
 
 	public function index()
 	{
@@ -41,7 +42,7 @@ class ProgramController extends \BaseController {
 		$programs = Paginator::make($prog, Program::count(), $perPage);*/
 
 		// Display Program List and send information to the view
-	  	return View::make('programs')
+	  	return View::make($this->directory_files .'/list')
 			->with(
 				array(
 				'programs' 		=> $programs,
@@ -63,7 +64,7 @@ class ProgramController extends \BaseController {
 		//store in the session object the previous URL
 		Session::put('UrlPrevious',URL::previous());
 		//Display the view to add a program
-	  	return View::make('create_program')
+	  	return View::make($this->directory_files .'/create')
 	  		->with(array(
 				
 				'title'			=> 'Program Management'
@@ -114,7 +115,7 @@ class ProgramController extends \BaseController {
 		// find a program id to access its information
 		 $program = Program::find($id);
         //show program info in the view
-        return View::make('show_program')
+        return View::make($this->directory_files .'/show')
             ->with('program', $program);
 	}
 
@@ -133,7 +134,7 @@ class ProgramController extends \BaseController {
 		// find a program id to access its information
 		$program = Program::find($id);
         //show the edit form and pass the program
-        return View::make('edit_program')
+        return View::make($this->directory_files .'/edit')
             ->with('program', $program);
 	}
 
@@ -213,7 +214,7 @@ class ProgramController extends \BaseController {
 			$label_search='';
 		}
 		// Display the view and return some variables to the view to display info
-		return View::make('programs')
+		return View::make($this->directory_files .'/list')
 			->with(
 				array(
 				'programs' 		=> $programs,
@@ -253,7 +254,7 @@ class ProgramController extends \BaseController {
 
 		Session::put('UrlPrevious',URL::previous());
         //show the import form 
-        return View::make('import_programs');
+        return View::make($this->directory_files .'/import');
       
 	}
 

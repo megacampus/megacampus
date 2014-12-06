@@ -9,13 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!--style>
-    	a.navbar-brand {
-    		background:#336699;
-
-		}
-   	</style-->
-
+ 
 	@section('title')
 		<title>*** Missing Title Description ***</title>
 	@show
@@ -25,7 +19,7 @@
 <head>
 
 	<!--This section appears by default if it is not specify-->
-	@section('header')
+	
 
 		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -37,7 +31,7 @@
 		<!--difer makes the same effect of locate the javascript file at the bottom of html-body -->
 		<script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script defer="defer" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	@show
+	
 
 
 </head>
@@ -83,19 +77,27 @@
 		</div>
 	</div>
 
-	<div id="content">
+	<div id="content" style="height:650px">
 
 		@yield('body')
 
 	</div>	
 
-	<div id="footer">
-		 <footer >
+	<div id="footer" style="background-color:black;color:white; padding:3px">
 			<div class="container">
-				<div class="row" >
-					<div class="col-sm-3">
+				<div class="row">
+					<div class="col-sm-6" align="left">
 						<!--p style="color:#5567f1"-->
 						<p> MegaCampus (2014-2016) &copy; </p>
+					</div>
+					<div class="col-sm-6" align="right">
+						<p>Code by: TMTechnologies&reg</p>
+					</div>
+				</div>
+
+				<div class="row" >
+					<div class="col-sm-3" align="left">
+						
 					</div>
 					<div class="col-sm-3">
 						<p>A complete software to help you to manage the information of your education institute.</p>
@@ -121,16 +123,11 @@
 							
 						</ul>
 					</div>
-					<div class="col-sm-2">
-						<p>Code by: TMTechnologies&reg</p>
+					<div class="col-sm-2" align="left">
+						
 					</div>
-
-				</div>
-
-				
+				</div>	
 			</div>
-
- 	</footer>
 	</div>		
 </div>
 

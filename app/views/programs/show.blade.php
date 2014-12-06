@@ -7,8 +7,6 @@
 
 @section('body')
 
-
-
 	<div class="col-lg-10" align="left">
 
         <div class="panel panel-default">
@@ -19,18 +17,10 @@
 			</div>           
          	 <div class="panel-body">
 
-					<!--button type="button" class="btn btn-primary">New</button>		
-					<button type="button" class="btn btn-primary">Edit</button>
-					<button type="button" class="btn btn-primary">Delete</button>
-					<button type="button" class="btn btn-primary">Export</button>
-					<button type="button" class="btn btn-primary">Import</button-->
-					
-			
+		
 				{{ HTML::ul($errors->all())}}
 
-				
-				<!--{{ Form::model($program, array('route' => array('programs.update', $program->id), 'method' => 'PUT')) }}-->
-
+	
 				{{ Form::model($program, array('route' => array('programs.show', ''), 'method' => 'GET')) }}
 
 

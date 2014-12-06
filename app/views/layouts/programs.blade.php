@@ -26,7 +26,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-		<link href="assets/css/pagelayout.css" rel="stylesheet">
+		<!-- <link href="assets/css/pagelayout.css" rel="stylesheet"> -->
 
 		<!--difer makes the same effect of locate the javascript file at the bottom of html-body -->
 		<script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
