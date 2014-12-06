@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.programs')
 
 @section('title')
 	<title> Import Programs </title>
@@ -7,38 +7,6 @@
 
 @section('body')
 
-<!--br><br>
-	<!--div class="page-header" ><h3>Study Program List</h3></div-->
-
-
-<!--div class="container">
-	
-		<!--br><br-->
-<br><br><br>
-<!--div class="row"-->
-	<div class="col-sm-2 text-left">
-		<!--div class="panel panel-default">
-			<div class="panel-heading">
-				  <h3 class="panel-title">Options</h3>
-			</div>
-			 <div class="panel-body"-->
-			 	<div class="well">
-   					 <ul class="nav nav-list">
-   					 	<li class="nav-header"><h4>Main Menu</h4></li>
-						<li><a href="/">Home</a></li>
-						<li><a href="#">Campus</a></li>
-						<li><a href="/programs">Programs</a></li>
-						<li><a href="#">Courses</a></li>
-						<li><a href="#">Teachers</a></li>
-						<li><a href="#">Students</a></li>
-						<li><a href="#">Events</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Help</a></li>
-					</ul>				
-				</div>
-			<!--/div>
-		</div-->
-	</div>
 
 	<div class="col-lg-10" align="left">
 
@@ -79,7 +47,7 @@
 		</div>	
 	<!--/div>	
 </div-->			
-</div>>
+</div>
 
 	
 @stop

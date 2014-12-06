@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.programs')
 
 @section('title')
 	<title> Edit Programs </title>
@@ -7,40 +7,6 @@
 
 
 @section('body')
-
-<!--br><br>
-	<!--div class="page-header" ><h3>Study Program List</h3></div-->
-
-
-
-	
-		<!--br><br-->
-<br><br><br>
-<!--div class="row"-->
-
-	<div class="col-sm-2 text-left">
-		<!--Display the left panel with system options-->
-	    <div class="panel panel-default">
-
-	        <div class="panel-heading">
-	          <h3 class="panel-title">Menu</h3>
-			</div>           
-
-			<table class= "table table-bordered table-hover" style="color:blue;">
-				
-				<tr><td>Campus</td></tr>
-				<tr><td><a href="/programs">Programs</a></td></tr>
-				<tr><td>Courses</td></tr>
-				<tr><td>Teachers</td></tr>
-				<tr><td>Students</td></tr>
-				<tr><td>Calendar</td></tr>
-				<tr><td>&nbsp</td></tr>
-				<tr><td>Help</td></tr>
-				
-			</table>
-		</div>
-
-	</div>
 
 	<div class="col-lg-10" align="left">
 
@@ -115,7 +81,7 @@
 			
 		</div>	
 	<!--/div-->	
-</div>>			
+</div>	
 
 
 	

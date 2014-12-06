@@ -17,6 +17,15 @@ class ProgramController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	// fields validations for store and edit functions
+	private $rules = array(
+            'program_id'      	 	=> 'required',
+            'program_name'      	=> 'required', //|email',
+            'program_description' 	=> 'required' //|numeric'
+        );
+
+
 	public function index()
 	{
 		
@@ -54,7 +63,12 @@ class ProgramController extends \BaseController {
 		//store in the session object the previous URL
 		Session::put('UrlPrevious',URL::previous());
 		//Display the view to add a program
-	  	return View::make('create_program');
+	  	return View::make('create_program')
+	  		->with(array(
+				
+				'title'			=> 'Program Management'
+		));
+
 	}
 
 
@@ -65,14 +79,10 @@ class ProgramController extends \BaseController {
 	 */
 	public function store()
 	{
-		// define fields validations
-		$rules = array(
-			'program_id'       => 'required',
-			'program_name'      => 'required', //|email',
-			'program_description' => 'required' //|numeric'
-		);
+		
+		
 		// validate the fields base on the rules define
-		$validator = Validator::make(Input::all(), $rules);
+		$validator = Validator::make(Input::all(), $this->rules);
 		// Send to view the errrs messages
 		if ($validator->fails()) {
 			return Redirect::to('programs/create')
@@ -136,16 +146,9 @@ class ProgramController extends \BaseController {
 	 */
 	public function update($id)
 	{
-
 		
-		// define fields validations
-		$rules = array(
-            'program_id'      	 	=> 'required',
-            'program_name'      	=> 'required', //|email',
-            'program_description' 	=> 'required' //|numeric'
-        );
 		// validate the fields base on the rules define
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Input::all(), $this->rules);
         // Send to view the errrs messages
         if ($validator->fails()) {
             return Redirect::to('programs/' . $id . '/edit')

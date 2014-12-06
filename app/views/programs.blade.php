@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.programs')
 
 <!--"Programs Management"-->
 
@@ -10,42 +10,9 @@
 
 @section('body')
 
-				
+	<div class="col-sm-10" align="left">
 
-<br><br><br>
-
-<div class="conteiner">
-	
-	<div class="col-sm-2 text-left">
-
-	 	<!--Display the left panel with system options-->
-	    <div class="panel panel-default">
-
-	        <div class="panel-heading">
-	          <h3 class="panel-title">Menu</h3>
-			</div>           
-
-			<table class= "table table-bordered table-hover" style="color:blue;">
-				
-				<tr><td>Campus</td></tr>
-				<tr><td><a href="/programs">Programs</a></td></tr>
-				<tr><td>Courses</td></tr>
-				<tr><td>Teachers</td></tr>
-				<tr><td>Students</td></tr>
-				<tr><td>Calendar</td></tr>
-				<tr><td>&nbsp</td></tr>
-				<tr><td>Help</td></tr>
-				
-			</table>
-		</div>
-
-	</div>
-
-
-			
-	<div class="col-sm-10 text-left">
-			<!--br><br-->
-	    <div class="panel panel-default">
+	    <div class="panel panel-default" >
 
 	        <div class="panel-heading">
 	          <h3 class="panel-title">{{$title}}</h3>
@@ -97,7 +64,7 @@
 						      <input name="search_value" type="text" placeholder='Searching Text...' class="form-control">
 
 						      <span class="input-group-btn">
-						        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>&nbsp;Search</button>
+						        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
 						      </span>
 
 						    </div>
@@ -132,9 +99,7 @@
 							<!-- Populate the Table Display-->
 					    	@foreach($programs as $program)
 							    <tr>
-							    	<!--td class="center">
-							        	<input type="checkbox" id="checkrow" value="1"/>
-							        </td-->
+							    	
 							    	<td>{{ $program->id }}</td>
 							    	<td>{{ $program->program_id }}</td>
 							        <td>{{ $program->program_name }}</td>
@@ -143,17 +108,7 @@
 							        <td>{{ $program->updated_at }}</td>
 							        <td >
 
-								        <!--a href="/programs">
-								        	<div class="glyphicon glyphicon-pencil" ></div>
-								        </a>
-								        <a href="programs/destroy/" >
-								        	<div class="glyphicon glyphicon-trash"></div>
-								        </a-->
-			     							    
-
-									<!--{{Form::delete('programs/'. $program->id, 'Delete', array('class'=>'btn btn-default'))}}-->
-
-									<!-- Form to handle Edit and Delte items-->
+								    <!-- Form to handle Edit and Delte items-->
 									{{ Form::open(array(
 																			
 										'url' => 'programs/'. $program->id,'class' => 'pull-right')) }}
@@ -163,19 +118,25 @@
 
 										<a 	class="btn btn-sm btn-primary" 
 								        	href="{{ URL::to('programs/' . $program->id . '/show') }}">
-												View								        	
+												View									        	
 								        </a>
 										
 										<a 	class="btn btn-sm btn-primary" 
 								        	href="{{ URL::to('programs/' . $program->id . '/edit') }}">
 												Edit								        	
 								        </a>
-								        {{ Form::hidden('_method', 'DELETE') }}
-					                    {{ Form::submit('Delete', array('class' => 'btn btn-sm  btn-primary')) }}
-					                     
+								    
+										 {{ Form::open(array('url'=> 'programs/'. $program->id,'method' => 'DELETE'))}}
+
+												<input type="submit" value="Delete" class="btn btn-sm btn-primary">											
+										{{ Form::close() }}    
+										                 
 					                {{ Form::close() }}
 
+
+
 		  					       	</td>
+					                   
 							    </tr>
 					    	@endforeach
 
@@ -200,7 +161,7 @@
 
 		</div>
 	</div>
-</div>>
+</div>
 
 
 @stop
