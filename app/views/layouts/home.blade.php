@@ -91,7 +91,7 @@
 						<p> MegaCampus (2014-2016) &copy; </p>
 					</div>
 					<div class="col-sm-6" align="right">
-						<p>Code by: TMTechnologies&reg</p>
+						<p>Code by TMTechnologies&reg</p>
 					</div>
 				</div>
 
