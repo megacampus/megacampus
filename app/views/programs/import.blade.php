@@ -18,23 +18,17 @@
 			</div>           
          	 <div class="panel-body">
 
-					<!--button type="button" class="btn btn-primary">New</button>		
-					<button type="button" class="btn btn-primary">Edit</button>
-					<button type="button" class="btn btn-primary">Delete</button>
-					<button type="button" class="btn btn-primary">Export</button>
-					<button type="button" class="btn btn-primary">Import</button-->
-					
 				{{ HTML::ul($errors->all())}}
 
 				{{ Form::open(array('url'=>'programs/import','files'=>true)) }}
   
-					{{ Form::label('file','File',array('id'=>'','')) }}
+					{{ Form::label('Upload File') }}
 
-					{{ Form::file('file','',array('class'=>'btn btn-sm btn-default')) }}
+					{{ Form::file('fileToImport') }}
 				  	<br/><br/>
 				  	<!-- submit buttons -->
-				  	{{ Form::submit('File Preview', array('class'=>"btn btn-sm btn-primary")) }}
-					{{ Form::submit('File Import', array('class'=>"btn btn-sm btn-primary")) }}
+				  	{{ Form::submit('Preview File', array('class'=>"btn btn-sm btn-primary")) }}
+					{{ Form::submit('Import File', array('class'=>"btn btn-sm btn-primary")) }}
 				  
 				  	<!-- reset buttons -->
 				  	{{ Form::reset('Reset', array('class'=>"btn btn-sm btn-primary")) }}
@@ -43,7 +37,8 @@
 				
 
 			</div>
-			
+
+
 		</div>	
 	<!--/div>	
 </div-->			

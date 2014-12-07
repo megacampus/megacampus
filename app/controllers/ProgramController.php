@@ -182,11 +182,19 @@ class ProgramController extends \BaseController {
 	
 		// find a program id to delete it
 		$program = Program::find($id);
-		// delete the program id found
-		$program->delete();
-		//store in the session object a message to display in the view
-      	Session::flash('message', 'The program was deleted successfully!');
-      	//return to the previous url;
+	
+		//validate if $id was found
+		if (!empty($program->program_id)) {
+			
+			// delete the program id found
+			$program->delete();
+			//store in the session object a message to display in the view
+	      	Session::flash('message', 'The program was deleted successfully!');
+	      
+
+     	 }
+
+     	//return to the previous url
       	return Redirect::back();
 	}
 
@@ -250,30 +258,68 @@ class ProgramController extends \BaseController {
 
 	public function selectImportFile() 
 	{ 
-		
 
+				
 		Session::put('UrlPrevious',URL::previous());
         //show the import form 
         return View::make($this->directory_files .'/import');
+        
       
 	}
 
 
 	public function import() 
 	{ 
-		return "entro";
-		//read a excel files 
-		$programs=Excel::load('C:\Users\ROLTOR~1\AppData\Local\Temp\Programs.csv',
-					 function($reader) {})->get();
+	
+		//get the upload file infomration
+		$file=Input::file('fileToImport');
+		
+		//var_dump(get_class_methods(Input::file('image')));
+		
+		// validate the user select a file
+		if (!empty($file)) {
+		
+			//load the file to the databasei
+			$programs=Excel::load($file->getRealPath(), function($reader) {
 
+				//get the file content / data
+				$results = $reader->get();
 
-		// FALTA LA LOGICA PARA AGREGARLO A LA BASE DE DATOS
+				// count variable for the record added to the database
+				$i=0;
 
+				foreach ($results as $key => $row) {
 
-		Session::flash('message', 'The programs was imported successfully!');
-      	//return to the previous url;
-	   // return Redirect::to (Session::get('UrlPrevious'));
-      
+					//echo $i . '--' . $row->program_id . '   ' . $row->program_name . '   ' . $row->program_description .   '   ' . $row->created_at .'<br>';
+
+					if (!empty ($row->program_id)) {
+
+						$program = new Program;
+						$program->program_id      	 	= $row->program_id;
+						$program->program_name      	= $row->program_name;
+						$program->program_description	= $row->program_description;
+						$program->save();
+						$i++;
+					}
+				}
+
+				// Store the message information for the user in the Session Object
+				Session::flash('message', 'The import process add '.  $i . ' records successfully!');
+				
+			})->get();
+		
+		}
+	      
+        else{
+
+	    	Session::flash('message', 'The import process add 0 records successfully!');  	
+
+	      }	
+		
+
+	   	//return to the previous url;
+		return Redirect::to (Session::get('UrlPrevious'));
+
 	}
 }
 

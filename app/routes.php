@@ -22,6 +22,7 @@
 });*/
 
 
+
 Route::get('programs/{id}/show','ProgramController@show');
 
 Route::get('programs/search','ProgramController@search');
@@ -30,7 +31,7 @@ Route::get('programs/export','ProgramController@export');
 
 Route::get('programs/import_file','ProgramController@selectImportFile');
 
-Route::get('programs/import','ProgramController@import');
+Route::post('programs/import','ProgramController@import');
 
 Route::resource('programs', 'ProgramController');
 
@@ -47,6 +48,9 @@ Route::get('/prueba', function (){
 
 	return View::make ('tirar/prueba');
 });
+
+
+
 
 
 
