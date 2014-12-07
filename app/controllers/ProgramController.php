@@ -268,15 +268,22 @@ class ProgramController extends \BaseController {
 	}
 
 
+
+	
 	public function import() 
 	{ 
-	
+
+		/*=====================	RULES TO IMPORt FILES ========================================
+		1) The first row must be the fields hearder .
+		2) if the row has a value in the ID Field it will be update if not will be added.
+		===================================================================================*/
+
 		//get the upload file infomration
 		$file=Input::file('fileToImport');
 		
 		//var_dump(get_class_methods(Input::file('image')));
 		
-		// validate the user select a file
+		//validate the user select a file
 		if (!empty($file)) {
 		
 			//load the file to the databasei
@@ -285,41 +292,44 @@ class ProgramController extends \BaseController {
 				//get the file content / data
 				$results = $reader->get();
 
-				// count variable for the record added to the database
-				$i=0;
+				$i=0; // caount add records
+				$j=0; // count update records
 
 				foreach ($results as $key => $row) {
-
-					//echo $i . '--' . $row->program_id . '   ' . $row->program_name . '   ' . $row->program_description .   '   ' . $row->created_at .'<br>';
-
+					// Validate if the file uploaded has the ID field
 					if (!empty ($row->program_id)) {
-
-						$program = new Program;
-						$program->program_id      	 	= $row->program_id;
-						$program->program_name      	= $row->program_name;
-						$program->program_description	= $row->program_description;
-						$program->save();
-						$i++;
+						// find the id to decide if it wil be an update or add process
+						$program =  Program::find($row->id);
+						//validate if $id was found so UPDATE it
+						if ($program) {
+							$program->program_id      	 	= $row->program_id;
+							$program->program_name      	= $row->program_name;
+							$program->program_description	= $row->program_description;
+							$program->touch();  //touch: update timestamps
+							$program->save();
+							$j++;
+						}
+						// validate no found so ADD it
+						else{
+							$program = new Program;
+							$program->program_id      	 	= $row->program_id;
+							$program->program_name      	= $row->program_name;
+							$program->program_description	= $row->program_description;
+							$program->save();
+							$i++;
+						}
 					}
 				}
-
 				// Store the message information for the user in the Session Object
-				Session::flash('message', 'The import process add '.  $i . ' records successfully!');
-				
+				Session::flash('message', 'The import process add '.  $i . ' records and update '. $j . ' successfully!');
 			})->get();
 		
 		}
-	      
         else{
-
 	    	Session::flash('message', 'The import process add 0 records successfully!');  	
-
 	      }	
-		
-
 	   	//return to the previous url;
 		return Redirect::to (Session::get('UrlPrevious'));
-
 	}
 }
 
