@@ -32,21 +32,6 @@
 		<script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script defer="defer" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	
-		<script defer="defer" >
-			$(document).ready(function(){
-			    $('form').submit(function(e){
-			        e.preventDefault();
-			        url = $(this).parent().attr('action');
-			        BootstrapDialog.confirm('Are you sure you want to delete?', function(result){
-			            if(result) {
-			            //    $.ajax(url);
-			            }
-			        });
-			    });
-
-			});
-		</script>
-
 </head>
 
 
