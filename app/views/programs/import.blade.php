@@ -31,7 +31,7 @@
 					{{ Form::submit('Import File', array('class'=>"btn btn-sm btn-primary")) }}
 				  
 				  	<!-- reset buttons -->
-				  	{{ Form::reset('Reset', array('class'=>"btn btn-sm btn-primary")) }}
+				  	{{ Form::reset('Clear File', array('class'=>"btn btn-sm btn-primary")) }}
 			  
 			 	 {{ Form::close() }}
 				
