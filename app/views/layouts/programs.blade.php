@@ -19,18 +19,43 @@
 <head>
 
 	<!--This section appears by default if it is not specify-->
+		
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- <link href="assets/css/pagelayout.css" rel="stylesheet"> -->
+
+	<!--difer makes the same effect of locate the javascript file at the bottom of html-body -->
 	
 
+
+
+	<style>
+		#modalWindow {
+		    width: 400px;
+		    height: 500px;
+		    position: absolute;
+		    top: 20%;
+		    left: 45%;
+		    margin-top: -25px;
+		    margin-left: -200px;
+		    padding: 20px;
+
+		}
+
+		.modal-header
+         {
+            background-color: #F6F6F6;
+            border-radius: 10px 10px 0px 0px;
+            padding: 10px;
+         }
+
+
 		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-		<!-- <link href="assets/css/pagelayout.css" rel="stylesheet"> -->
-
-		<!--difer makes the same effect of locate the javascript file at the bottom of html-body -->
-		<script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script defer="defer" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	</style>
+		
 	
 </head>
 
@@ -75,7 +100,7 @@
 		</div>
 	</div>
 
-	<div id="content" style="height:650px">
+	<div id="content" style="height:770px">
 		<br> <br> <br> <br>
 		<div class="col-sm-2 text-left">
 			<!--Display the left panel with system options-->
@@ -154,7 +179,47 @@
 	</div>		
 </div>
 
-</body>
 
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!--script src="views/js/scripts.js"></script-->
+
+<script type="text/javascript">
+	
+$(document).ready(function() {
+
+  $('#modalWindow').on('show.bs.modal', function (e) {
+
+     // get data title sent as a parameter
+     $title = $(e.relatedTarget).attr('data-title');
+     // find the title section and set the title to be display
+     $(this).find('.modal-title').text($title);
+     // get data message sent as a parameter
+     $message = $(e.relatedTarget).attr('data-message');
+     // find the body section and set the message to be display
+     $(this).find('.modal-body p').text($message);
+
+      // Pass form reference to modal for submission on yes/ok
+     var form = $(e.relatedTarget).closest('form');
+     $(this).find('.modal-footer #confirm').data('form', form);
+  });
+    
+  // Form confirm (yes/ok) handler, submits form 
+  $('#modalWindow').find('.modal-footer #confirm').on('click', function(){
+    console.log('User Press YES!!');
+     $(this).data('form').submit();
+  });
+
+
+});
+
+function notification() {
+    console.log('entro a notification');
+}
+
+</script>
+
+
+</body>
 
 </html>

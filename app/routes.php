@@ -44,7 +44,7 @@ Route::get('/', function (){
 
 /////////////////////////////////////
 
-Route::get('/prueba', function (){
+Route::get('/pruebas', function (){
 
 	return View::make ('tirar/prueba');
 });

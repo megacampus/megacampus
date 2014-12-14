@@ -29,8 +29,9 @@
 		<!-- <link href="assets/css/pagelayout.css" rel="stylesheet"> -->
 
 		<!--difer makes the same effect of locate the javascript file at the bottom of html-body -->
-		<script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script defer="defer" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
 	
 
 
@@ -77,7 +78,7 @@
 		</div>
 	</div>
 
-	<div id="content" style="height:650px">
+	<div id="content" style="height:770px">
 
 		@yield('body')
 

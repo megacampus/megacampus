@@ -16,20 +16,20 @@
 
 
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+            <div class="modal-header bg-default">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Modal title
+                    QUESTION
                 </h4>
             </div>
             <div class="modal-body">
-                <h3>Modal Body</h3>
+                <h4>Are you sure to delete the item?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="Yes">Yes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="No">No</button>
         </div>
     </div>
   </div>
@@ -38,17 +38,62 @@
 
 </div> 
 
-<script>
 
-$(#basicModal).on('click',funcition(){
+
+
+<script  src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+
+  console.log('Ready!!')
+   $('#basicModal').on('show.bs.modal', function (e) {
+      //e.preventDefault();
+      console.log('Window is Display!!')
+      $message = $(e.relatedTarget).attr('data-message');
+      $(this).find('.modal-body p').text($message);
+      $title = $(e.relatedTarget).attr('data-title');
+      $(this).find('.modal-title').text($title);
+
+      // Pass form reference to modal for submission on yes/ok
+     var form = $(e.relatedTarget).closest('form');
+     $(this).find('.modal-footer #confirm').data('form', form);
+  });
+    
+  // Form confirm (yes/ok) handler, submits form 
+  /*$('#basicModal').find('.modal-footer #Yes').on('click', function(e){
+     //$(this).data('form').submit();
+     console.log(e.target.id);
+     console.log('User Press The Button YES')
+  });
+
+  $('#basicModal').find('.modal-footer #No').on('click', function(){
+     //$(this).data('form').submit();
+     console.log('User Press The Button NO')
+  });*/
+
+
+  $('#basicModal').find('.modal-footer').on('click', function(e){
+     //$(this).data('form').submit();
+     if (e.target.id=='Yes'){
+          console.log('User Press The Button YES')
+          $('#basicModal').hide().fadeOut('slow');
+     }else{
+          console.log('User Press The Button NO') 
+     }
+     
+  });
+
   
- alert('hola');
-
 });
 
+
+ 
 </script>
 
-<script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script  src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 </body>
 </html>

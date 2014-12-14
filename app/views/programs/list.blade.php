@@ -8,7 +8,34 @@
 @stop
 
 
+
+
 @section('body')
+
+
+
+
+<!--div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title" id="myModalLabel">
+                    <strong>DELETE ACTION</strong>
+                </h5>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure to delete the item selected?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        </div>
+    </div>
+  </div>
+</div-->
+
+
 
 	<div class="col-sm-10" align="left">
 
@@ -24,11 +51,14 @@
 					<!--Display a message return from the controller in the Session Object-->
 					<div class="col-sm-12 text-center">
 							@if (Session::has('message'))
-								<p class="alert alert-info" data-dismiss="alert">
+
+							 <p class="alert alert-info" data-dismiss="alert">
+
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 									<strong>
 										{{ Session::get('message') }}
 									</strong>
-								</p>
+							 </p>
 							@endif
 					</div>
 				</div>
@@ -127,8 +157,19 @@
 								        </a>
 								    
 										 {{ Form::open(array('url'=> 'programs/'. $program->id,'method' => 'DELETE'))}}
-
-												<input type="submit" value="Delete" class="btn btn-sm btn-primary">											
+												
+									        <button 
+									        	class='btn btn-sm btn-primary' 
+									        	type="button" 
+									        	data-toggle="modal" 
+									        	data-target="#modalWindow" 
+									        	data-title="QUESTION" 
+									        	data-message= 'Are you sure you want to delete the item selected?'> 
+									        	Delete
+									        </button>
+									    
+									    	@include('php.messagebox')
+										
 										{{ Form::close() }}    
 										                 
 					                {{ Form::close() }}
@@ -163,5 +204,9 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	
+
+</script>
 
 @stop
