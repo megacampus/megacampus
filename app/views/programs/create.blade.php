@@ -18,7 +18,25 @@
 	     		 <h3 class="panel-title">{{$title}} </h3>
 			</div>           
 
-	        <div class="panel-body bg-gray">
+	        <div class="panel-body">
+
+				<div class="row">
+					<!--Display a message return from the controller in the Session Object-->
+					<div class="col-sm-12 text-center">
+							@if (Session::has('message'))
+
+							 <p class="alert alert-info" data-dismiss="alert">
+
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<strong>
+										{{ Session::get('message') }}
+									</strong>
+							 </p>
+							@endif
+					</div>
+				</div>
+
+
 
 			{{ HTML::ul($errors->all())}}
 
@@ -54,11 +72,13 @@
 				<hr>
 
 				<div class="control-group">
-					{{Form::reset('Clear Fields',array ('class'=>'btn btn-primary'));}}
-					{{Form::submit('Save Changes',array ('class'=>'btn btn-primary'));}}
-					<!--{{Form::button('Go Back',array ('class'=>'btn btn-default'));}}-->
+					{{Form::reset('Clear' ,array ('class'=>'btn btn-sm btn-primary'));}}
+					{{Form::submit('Save',array ('class'=>'btn btn-sm btn-primary'));}}
+					<!--{{Form::button('Back',array ('class'=>'btn btn-default'));}}-->
 			
-					{{link_to(URL::previous(), 'Go Back', array('class' => 'btn btn-primary'));}}
+					<!--{{link_to(URL::previous(), 'Back', array('class' => 'btn btn-primary'));}}-->
+
+					{{link_to(Url::to('/programs'), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
 
 					
 				</div>	

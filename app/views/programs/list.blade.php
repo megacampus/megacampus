@@ -47,10 +47,10 @@
 
 	        <div class="panel-body bg-gray">
 
-				<div class="row">
-					<!--Display a message return from the controller in the Session Object-->
+				<!--div class="row">
+					<Display a message return from the controller in the Session Object>
 					<div class="col-sm-12 text-center">
-							@if (Session::has('message'))
+							<@if (Session::has('message'))
 
 							 <p class="alert alert-info" data-dismiss="alert">
 
@@ -59,20 +59,27 @@
 										{{ Session::get('message') }}
 									</strong>
 							 </p>
-							@endif
+							@endif>
 					</div>
-				</div>
+				</div-->
 
 
 				<div class="row">	
 				
 					<!--Display the Create Program, Export and Import Buttom-->
 					<div class="col-sm-4 text-left">
-						<a href="{{URL::to ('programs/create')}}" class="btn btn-sm btn-primary">{{$create_link}}
+						<a href="{{URL::to ('programs/create')}}" class="btn btn-sm btn-primary">
+						<!--{{$create_link}}-->
+							<!--i class="glyphicon glyphicon-plus"></i-->
+							&nbsp;&nbsp;Add&nbsp;&nbsp;
 						</a>
-						<a href={{URL::to ('programs/export')}} class="btn btn-sm btn-primary">		Export to Xls
+						<a href={{URL::to ('programs/export')}} class="btn btn-sm btn-primary">		
+							<!--i class="glyphicon glyphicon-open"></i-->
+							Export
 						</a>
-						<a href="{{URL::to ('programs/import_file')}}" class="btn btn-sm btn-primary">	 Import from Xls
+						<a href="{{URL::to ('programs/import_file')}}" class="btn btn-sm btn-primary">	 
+							<!--i class="glyphicon glyphicon-save"></i-->
+							Import
 						</a>
 					</div>	
 					
@@ -80,7 +87,9 @@
 					<div class="col-sm-4 text-right">	
 						<!--TODO: Hide and Show with JQuery if a Search was executed-->
 						<div id='filter-label-search'> 
+							<h4>
 							{{Form::label('',$label_search,array('class'=>'label label-warning'))}}
+							</h4>
 						</div>
 					</div>
 
@@ -94,7 +103,7 @@
 						      <input name="search_value" type="text" placeholder='Searching Text...' class="form-control">
 
 						      <span class="input-group-btn">
-						        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+						        <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 						      </span>
 
 						    </div>
@@ -119,7 +128,7 @@
 					            <th data-field="description">PROGRAM DESCRIPTION</th>
 					            <th data-field="created_at">CREATED AT</th>
 					            <th data-field="updated_at">UPDATED AT</th>
-					            <th data-field="updated_at" width="170">ACTIONS</th>
+					            <th data-field="updated_at" width="182">ACTIONS</th>
 					           	
 					        </tr>
 					    </thead>
@@ -148,12 +157,14 @@
 
 										<a 	class="btn btn-sm btn-primary" 
 								        	href="{{ URL::to('programs/' . $program->id . '/show') }}">
-												View									        	
+												<!--i class="glyphicon glyphicon-file"></i-->
+												&nbsp;View&nbsp;
 								        </a>
 										
 										<a 	class="btn btn-sm btn-primary" 
 								        	href="{{ URL::to('programs/' . $program->id . '/edit') }}">
-												Edit								        	
+												<!--i class="glyphicon glyphicon-pencil"></i-->				
+												&nbsp;Edit&nbsp;				        	
 								        </a>
 								    
 										 {{ Form::open(array('url'=> 'programs/'. $program->id,'method' => 'DELETE'))}}
@@ -165,6 +176,7 @@
 									        	data-target="#modalWindow" 
 									        	data-title="QUESTION" 
 									        	data-message= 'Are you sure you want to delete the item selected?'> 
+									        	<!--i class="glyphicon glyphicon-trash"></i-->
 									        	Delete
 									        </button>
 									    

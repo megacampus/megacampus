@@ -18,11 +18,24 @@
 			</div>           
          	 <div class="panel-body">
 
-					<!--button type="button" class="btn btn-primary">New</button>		
-					<button type="button" class="btn btn-primary">Edit</button>
-					<button type="button" class="btn btn-primary">Delete</button>
-					<button type="button" class="btn btn-primary">Export</button>
-					<button type="button" class="btn btn-primary">Import</button-->
+				<div class="row">
+					<!--Display a message return from the controller in the Session Object-->
+					<div class="col-sm-12 text-center">
+							@if (Session::has('message'))
+
+							 <p class="alert alert-info" data-dismiss="alert">
+
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<strong>
+										{{ Session::get('message') }}
+									</strong>
+							 </p>
+							@endif
+					</div>
+				</div>
+
+
+
 					
 				{{ HTML::ul($errors->all())}}
 
@@ -65,10 +78,11 @@
 
 					<div class="control-group">
 						
-						{{Form::submit('Update Changes',array ('class'=>'btn btn-primary'));}}
+						{{Form::submit('Update',array ('class'=>'btn btn-sm btn-primary'));}}
 						<!--{{Form::button('Go Back',array ('class'=>'btn btn-default'));}}-->
 									
-						{{link_to(URL::previous(), 'Go Back', array('class' => 'btn btn-primary'));}}
+						<!--{{link_to(URL::previous(), 'Go Back', array('class' => 'btn btn-primary'));}}-->
+						{{link_to(Url::to('/programs'), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
 
 					</div>	
 					

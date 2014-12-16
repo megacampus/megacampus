@@ -97,9 +97,10 @@ class ProgramController extends \BaseController {
 			$program->program_description = Input::get('program_description');
 			$program->save();
 			//store in the session object a message to display in the view
-			Session::flash('message', 'Program was created successfully!');
+			Session::flash('message', 'SUCCESS: Program was created successfully!');
  			//return to the previous url;
-			return Redirect::to(Session::get('UrlPrevious'));
+			//return Redirect::to(Session::get('UrlPrevious'));
+			return Redirect::to(URL::current() . '/create');
 		}
 	}
 
@@ -164,9 +165,11 @@ class ProgramController extends \BaseController {
             $program->touch();
  			$program->save();
             //store in the session object a message to display in the view
-          	Session::flash('message', 'The program was updated successfully!');
+          	Session::flash('message', 'SUCCESS: The program was updated successfully!');
       	  	//return to the previous url;
-      	  	return Redirect::to (Session::get('UrlPrevious'));
+      	  	//return Redirect::to (Session::get('UrlPrevious'));
+      	  	return Redirect::to(URL::current() . '/edit');
+
         }
 
 	}
@@ -189,7 +192,7 @@ class ProgramController extends \BaseController {
 			// delete the program id found
 			$program->delete();
 			//store in the session object a message to display in the view
-	      	Session::flash('message', 'The program was deleted successfully!');
+	      	Session::flash('message', 'SUCCESS: The program was deleted successfully!');
 	      
 
      	 }
@@ -215,7 +218,7 @@ class ProgramController extends \BaseController {
 		// Verify if the user applied a filter via the Search Text		
 		if ($programs->getTotal()!=Program::All()->count()){
 			//if a filter is applied a label is display in the view
-			$label_search='Filter Is Applied';
+			$label_search= $value;
 		}
 		else{
 			//if a filter is NOT applied a label is set empty to avoid to be display it.
@@ -297,6 +300,7 @@ class ProgramController extends \BaseController {
 
 				foreach ($results as $key => $row) {
 					// Validate if the file uploaded has the ID field
+					
 					if (!empty ($row->program_id)) {
 						// find the id to decide if it wil be an update or add process
 						$program =  Program::find($row->id);
@@ -321,15 +325,27 @@ class ProgramController extends \BaseController {
 					}
 				}
 				// Store the message information for the user in the Session Object
-				Session::flash('message', 'The import process add '.  $i . ' records and update '. $j . ' successfully!');
+				
+				if (($i+$j)==0){
+					Session::flash('message', 'ERROR: The import process did not add or update any record successfully!');
+					Session::flash('error',1);	
+				}else{
+					Session::flash('message', 'SUCCESS: The import process add '.  $i . ' records and update '. $j . ' successfully!');
+					Session::flash('error',0);	
+				}
+
+				
 			})->get();
 		
 		}
         else{
-	    	Session::flash('message', 'The import process add 0 records successfully!');  	
-	      }	
+	    	Session::flash('message', 'ERROR: The import process did not add or update any record successfully!');
+			Session::flash('error',1);  	
+	    }	
 	   	//return to the previous url;
-		return Redirect::to (Session::get('UrlPrevious'));
+		//return Redirect::to (Session::get('UrlPrevious'));
+	    return Redirect::to(URL::to('programs/import_file'));
+
 	}
 }
 
