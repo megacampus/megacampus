@@ -113,11 +113,14 @@ class ProgramController extends \BaseController {
 	 */
 	public function show($id)
 	{
+
+		Session::put('UrlPrevious',URL::previous());
 		// find a program id to access its information
 		 $program = Program::find($id);
         //show program info in the view
         return View::make($this->directory_files .'/show')
             ->with('program', $program);
+            
 	}
 
 
@@ -153,6 +156,7 @@ class ProgramController extends \BaseController {
         $validator = Validator::make(Input::all(), $this->rules);
         // Send to view the errrs messages
         if ($validator->fails()) {
+        	//++++AQUI ME QUEDE Session::put('UrlPrevious', Session::get('UrlPrevious'));
             return Redirect::to('programs/' . $id . '/edit')
                 ->withErrors($validator);
                 //->withInput(Input::except('password'));

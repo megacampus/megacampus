@@ -58,7 +58,12 @@
 						
 						<!--{{link_to(URL::previous(), 'Go Back', array('class' => 'btn btn-primary'));}}-->
 
-						{{link_to(Url::to('/programs'), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+
+						{{link_to(Url::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+
+
+
+	
 
 					</div>	
 				</div>
