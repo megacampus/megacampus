@@ -38,7 +38,17 @@
 
 
 
-			{{ HTML::ul($errors->all())}}
+			@if ($errors->all())
+				<div class="alert alert-danger" data-dismiss="alert">
+
+				 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<strong>ERRORS:
+						{{ HTML::ul($errors->all())}}
+						</strong>
+				</div>	
+			@endif
+
+				
 
 			{{ Form::open(array('url' => 'programs')) }}
 
@@ -72,12 +82,9 @@
 				<hr>
 
 				<div class="control-group">
+					{{Form::submit('Add',array ('class'=>'btn btn-sm btn-primary'));}}
 					{{Form::reset('Clear' ,array ('class'=>'btn btn-sm btn-primary'));}}
-					{{Form::submit('Save',array ('class'=>'btn btn-sm btn-primary'));}}
-					<!--{{Form::button('Back',array ('class'=>'btn btn-default'));}}-->
-			
-					<!--{{link_to(URL::previous(), 'Back', array('class' => 'btn btn-primary'));}}-->
-
+					
 					{{link_to(Url::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
 
 					

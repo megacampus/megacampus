@@ -30,6 +30,8 @@ class ProgramController extends \BaseController {
 	public function index()
 	{
 		
+		//Remove All Session Variable;
+		Session::flush();
 		// Get the programa informantion page by page
 		$programs=Program::paginate(7);
 
@@ -61,8 +63,20 @@ class ProgramController extends \BaseController {
 	 */
 	public function create()
 	{
+		//Define the URL to Go Back to the Same Page of the Program List
+		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
+			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
+
+		}else{
+			if (strpos(URL::previous(),'page=')!==false){
+				$UrlPrevious='programs?' . strstr(URL::previous(), 'page=');
+			}else{
+				$UrlPrevious='programs/';
+			}
+		}
 		//store in the session object the previous URL
-		Session::put('UrlPrevious',URL::previous());
+		Session::put('UrlPrevious',$UrlPrevious);
+		
 		//Display the view to add a program
 	  	return View::make($this->directory_files .'/create')
 	  		->with(array(
@@ -84,11 +98,10 @@ class ProgramController extends \BaseController {
 		
 		// validate the fields base on the rules define
 		$validator = Validator::make(Input::all(), $this->rules);
-		// Send to view the errrs messages
+		// Send to view the errros messages and the input data
 		if ($validator->fails()) {
 			return Redirect::to('programs/create')
-				->withErrors($validator);
-				//->withInput(Input::except('password'));
+				->withInput()->withErrors($validator);
 		} else {
 			// store the data to the database
 			$program = new Program;
@@ -133,8 +146,21 @@ class ProgramController extends \BaseController {
 	public function edit($id)
 	{
 
+		//Define the URL to Go Back to the Same Page of the Program List
+		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
+			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
+
+		}else{
+			if (strpos(URL::previous(),'page=')!==false){
+				$UrlPrevious='programs?' . strstr(URL::previous(), 'page=');
+			}else{
+				$UrlPrevious='programs/';
+			}
+		}
 		//store in the session object the previous URL
-		Session::put('UrlPrevious',URL::previous());
+		Session::put('UrlPrevious',$UrlPrevious);
+		
+
 		// find a program id to access its information
 		$program = Program::find($id);
         //show the edit form and pass the program
@@ -151,12 +177,14 @@ class ProgramController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		
+
 		// validate the fields base on the rules define
         $validator = Validator::make(Input::all(), $this->rules);
         // Send to view the errrs messages
         if ($validator->fails()) {
-        	//++++AQUI ME QUEDE Session::put('UrlPrevious', Session::get('UrlPrevious'));
+
+        	//Session::put('UrlPrevious', Session::get('UrlPrevious'));
+
             return Redirect::to('programs/' . $id . '/edit')
                 ->withErrors($validator);
                 //->withInput(Input::except('password'));
@@ -266,15 +294,25 @@ class ProgramController extends \BaseController {
 	public function selectImportFile() 
 	{ 
 
-				
-		Session::put('UrlPrevious',URL::previous());
+		//Define the URL to Go Back to the Same Page of the Program List
+		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
+			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
+
+		}else{
+			if (strpos(URL::previous(),'page=')!==false){
+				$UrlPrevious='programs?' . strstr(URL::previous(), 'page=');
+			}else{
+				$UrlPrevious='programs/';
+			}
+		}
+		//store in the session object the previous URL
+		Session::put('UrlPrevious',$UrlPrevious);
+
         //show the import form 
         return View::make($this->directory_files .'/import');
         
       
 	}
-
-
 
 	
 	public function import() 
@@ -343,7 +381,7 @@ class ProgramController extends \BaseController {
 		
 		}
         else{
-	    	Session::flash('message', 'ERROR: The import process did not add or update any record successfully!');
+	    	Session::flash('message', 'ERROR: The file to import is missing, you need to choose a file!');
 			Session::flash('error',1);  	
 	    }	
 	   	//return to the previous url;

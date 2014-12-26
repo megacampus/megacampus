@@ -13,30 +13,6 @@
 @section('body')
 
 
-
-
-<!--div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h5 class="modal-title" id="myModalLabel">
-                    <strong>DELETE ACTION</strong>
-                </h5>
-            </div>
-            <div class="modal-body">
-                <h5>Are you sure to delete the item selected?</h5>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default">Yes</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        </div>
-    </div>
-  </div>
-</div-->
-
-
-
 	<div class="col-sm-10" align="left">
 
 	    <div class="panel panel-default" >
@@ -47,25 +23,8 @@
 
 	        <div class="panel-body bg-gray">
 
-				<!--div class="row">
-					<Display a message return from the controller in the Session Object>
-					<div class="col-sm-12 text-center">
-							<@if (Session::has('message'))
-
-							 <p class="alert alert-info" data-dismiss="alert">
-
-							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<strong>
-										{{ Session::get('message') }}
-									</strong>
-							 </p>
-							@endif>
-					</div>
-				</div-->
-
-
 				<div class="row">	
-				
+
 					<!--Display the Create Program, Export and Import Buttom-->
 					<div class="col-sm-4 text-left">
 						<a href="{{URL::to ('programs/create')}}" class="btn btn-sm btn-primary">
@@ -174,7 +133,7 @@
 									        	type="button" 
 									        	data-toggle="modal" 
 									        	data-target="#modalWindow" 
-									        	data-title="QUESTION" 
+									        	data-title="Question" 
 									        	data-message= 'Are you sure you want to delete the item selected?'> 
 									        	<!--i class="glyphicon glyphicon-trash"></i-->
 									        	Delete

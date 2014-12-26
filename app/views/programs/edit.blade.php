@@ -17,7 +17,7 @@
            
 			</div>           
          	 <div class="panel-body">
-
+         	 		<!--p> {{Session::get('UrlPrevious')}}</p-->
 				<div class="row">
 					<!--Display a message return from the controller in the Session Object-->
 					<div class="col-sm-12 text-center">
@@ -34,10 +34,15 @@
 					</div>
 				</div>
 
+				@if ($errors->all())
+					<div class="alert alert-danger" data-dismiss="alert">
 
-
-					
-				{{ HTML::ul($errors->all())}}
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<strong>ERRORS:
+							{{ HTML::ul($errors->all())}}
+							</strong>
+					</div>	
+				@endif
 
 				
 				{{ Form::model($program, array('route' => array('programs.update', $program->id), 'method' => 'PUT')) }}
@@ -72,9 +77,6 @@
 					</div>
 
 					<hr>	
-
-
-				
 
 					<div class="control-group">
 						

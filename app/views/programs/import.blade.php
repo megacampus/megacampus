@@ -54,10 +54,13 @@
 				  	<!-- reset buttons -->
 				  	{{ Form::reset('Clear', array('class'=>"btn btn-sm btn-primary")) }}
 
-				  	{{link_to(Url::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+
+				  	{{link_to(URL::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+
+
 			  
 			 	 {{ Form::close() }}
-				
+					
 
 			</div>
 
