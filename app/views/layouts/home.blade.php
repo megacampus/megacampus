@@ -32,7 +32,27 @@
 		<script defer="defer" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script defer="defer" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		
+
+
+
+<style>
 	
+
+	/* Set the fixed height of the footer here */
+	#footer{
+		color:gray;
+		background: lightgray;
+		bottom:-27px;
+		border: none;
+	}
+	.bottombrand{
+		padding-left: 20px;
+	}
+	.bottomcodeby{
+		padding-right: 20px;
+	}
+	
+</style>
 
 
 </head>
@@ -78,17 +98,28 @@
 		</div>
 	</div>
 
-	<div id="content" style="height:770px">
+	<div id="content"> <!--style="height:770px"-->
 
 		@yield('body')
 
 	</div>	
 
-	<div id="footer" style="background-color:black;color:white; padding:3px">
+	<div id="footer" class="navbar navbar-inverse navbar-fixed-bottom">
+		<div class="row" >
+			<div class="col-sm-6" align="left">
+				<!--p style="color:#5567f1"-->
+				<p class="bottombrand"> MegaCampus (2014-2016) &copy; </p>
+			</div>
+			<div class="col-sm-6" align="right">
+				<p class="bottomcodeby">Code by TMTechnologies &reg; </p>
+			</div>
+		</div>
+	</div>
+
+	<!--div id="footer"> <!--style="background-color:black;color:white; padding:3px">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6" align="left">
-						<!--p style="color:#5567f1"-->
 						<p> MegaCampus (2014-2016) &copy; </p>
 					</div>
 					<div class="col-sm-6" align="right">
@@ -129,7 +160,7 @@
 					</div>
 				</div>	
 			</div>
-	</div>		
+	</div-->		
 </div>
 
 </body>

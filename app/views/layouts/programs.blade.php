@@ -27,11 +27,9 @@
 	<!-- <link href="assets/css/pagelayout.css" rel="stylesheet"> -->
 
 	<!--difer makes the same effect of locate the javascript file at the bottom of html-body -->
-	
-
-
 
 	<style>
+
 		#modalWindow {
 		    width: 400px;
 		    height: 500px;
@@ -51,7 +49,19 @@
             padding: 10px;
          }
 
+		#footer{
+			color:gray;
+			background: lightgray;
+			bottom:-27px;
+			border: none;
+		}
 
+		.bottombrand{
+			padding-left: 20px;
+		}
+		.bottomcodeby{
+			padding-right: 20px;
+		}
 		
 
 	</style>
@@ -63,8 +73,8 @@
 <body>
 
 <div id="wrapper">
-
-	<div id="header" class="navbar navbar-inverse navbar-fixed-top" >
+	
+	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
 		
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -100,7 +110,7 @@
 		</div>
 	</div>
 
-	<div id="content" style="height:770px">
+	<div id="content"> <!--style="height:770px"-->
 		<br> <br> <br> <br>
 		<div class="col-sm-2 text-left">
 			<!--Display the left panel with system options-->
@@ -131,11 +141,23 @@
 
 	</div>	
 
-	<div id="footer" style="background-color:black;color:white; padding:3px">
+
+	<div id="footer" class="navbar navbar-inverse navbar-fixed-bottom">
+		<div class="row" >
+			<div class="col-sm-6" align="left">
+				<!--p style="color:#5567f1"-->
+				<p class="bottombrand"> MegaCampus (2014-2016) &copy; </p>
+			</div>
+			<div class="col-sm-6" align="right">
+				<p class="bottomcodeby">Code by TMTechnologies &reg; </p>
+			</div>
+		</div>
+	</div>
+
+	<!--div id="footer" style="background-color:black;color:white; padding:3px">
 			<div class="container">
 				<div class="row" >
 					<div class="col-sm-6" align="left">
-						<!--p style="color:#5567f1"-->
 						<p> MegaCampus (2014-2016) &copy; </p>
 					</div>
 					<div class="col-sm-6" align="right">
@@ -176,7 +198,8 @@
 					</div>
 				</div>	
 			</div>
-	</div>		
+	</div-->		
+
 </div>
 
 
