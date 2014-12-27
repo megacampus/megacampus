@@ -3,7 +3,7 @@
 /**
  * Controller Name: ProgramController
  *
- * Description: Controller to list, insert, update, delete, search, export Programs Information
+ * Description: Controller to list, insert, update, delete, search, export and import Programs Information
  * 
  * Author: 
  *
@@ -31,7 +31,8 @@ class ProgramController extends \BaseController {
 	{
 		
 		//Remove All Session Variable;
-		Session::flush();
+		Session::forget('UrlPrevious');
+		//Session::flush();
 		// Get the programa informantion page by page
 		$programs=Program::paginate(7);
 
@@ -63,10 +64,10 @@ class ProgramController extends \BaseController {
 	 */
 	public function create()
 	{
+		
 		//Define the URL to Go Back to the Same Page of the Program List
 		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
 			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
-
 		}else{
 			if (strpos(URL::previous(),'page=')!==false){
 				$UrlPrevious='programs?' . strstr(URL::previous(), 'page=');
@@ -80,7 +81,6 @@ class ProgramController extends \BaseController {
 		//Display the view to add a program
 	  	return View::make($this->directory_files .'/create')
 	  		->with(array(
-				
 				'title'			=> 'Program Management'
 		));
 
@@ -94,8 +94,6 @@ class ProgramController extends \BaseController {
 	 */
 	public function store()
 	{
-		
-		
 		// validate the fields base on the rules define
 		$validator = Validator::make(Input::all(), $this->rules);
 		// Send to view the errros messages and the input data
@@ -103,14 +101,26 @@ class ProgramController extends \BaseController {
 			return Redirect::to('programs/create')
 				->withInput()->withErrors($validator);
 		} else {
-			// store the data to the database
-			$program = new Program;
-			$program->program_id       = Input::get('program_id');
-			$program->program_name      = Input::get('program_name');
-			$program->program_description = Input::get('program_description');
-			$program->save();
-			//store in the session object a message to display in the view
-			Session::flash('message', 'SUCCESS: Program was created successfully!');
+			try {
+				DB::beginTransaction();
+					// store the data to the database
+					$program = new Program;
+					$program->program_id       = Input::get('program_id');
+					$program->program_name      = Input::get('program_name');
+					$program->program_description = Input::get('program_description');
+					$program->save();
+					//store in the session object a message to display in the view
+					Session::flash('message', 'SUCCESS: Program was created successfully!');	
+				DB::commit();
+
+			} catch (Exception $e) {
+				
+	    		Session::flash('message', 'ERROR: The add process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage().'</em>');
+				Session::flash('error',1);	
+
+				DB::rollBack();
+			}
+			
  			//return to the previous url;
 			//return Redirect::to(Session::get('UrlPrevious'));
 			return Redirect::to(URL::current() . '/create');
@@ -159,7 +169,6 @@ class ProgramController extends \BaseController {
 		}
 		//store in the session object the previous URL
 		Session::put('UrlPrevious',$UrlPrevious);
-		
 
 		// find a program id to access its information
 		$program = Program::find($id);
@@ -177,31 +186,39 @@ class ProgramController extends \BaseController {
 	 */
 	public function update($id)
 	{
-
 		// validate the fields base on the rules define
         $validator = Validator::make(Input::all(), $this->rules);
         // Send to view the errrs messages
         if ($validator->fails()) {
-
-        	//Session::put('UrlPrevious', Session::get('UrlPrevious'));
-
             return Redirect::to('programs/' . $id . '/edit')
                 ->withErrors($validator);
                 //->withInput(Input::except('password'));
         } else {
             // store the data to the database
-            $program = Program::find($id);
-            $program->program_id      		= Input::get('program_id');
-            $program->program_name     		= Input::get('program_name');
-            $program->program_description 	= Input::get('program_description');
-            $program->touch();
- 			$program->save();
-            //store in the session object a message to display in the view
-          	Session::flash('message', 'SUCCESS: The program was updated successfully!');
-      	  	//return to the previous url;
-      	  	//return Redirect::to (Session::get('UrlPrevious'));
-      	  	return Redirect::to(URL::current() . '/edit');
+			try {
+	            DB::beginTransaction();
+		            $program = Program::find($id);
+		            $program->program_id      		= Input::get('program_id');
+		            $program->program_name     		= Input::get('program_name');
+		            $program->program_description 	= Input::get('program_description');
+		            $program->touch();
+		 			$program->save();
+		            //store in the session object a message to display in the view
+		          	Session::flash('message', 'SUCCESS: The program was updated successfully!');
+		      	  	//return to the previous url;
+		      	  	//return Redirect::to (Session::get('UrlPrevious'));
+		      	  	return Redirect::to(URL::current() . '/edit');
+	      	  	DB::commit();
 
+	    	} catch (Exception $e) {
+
+	    		Session::flash('message', 'ERROR: The update process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage().'</em>');
+				Session::flash('error',1);	
+
+				DB::rollBack();
+			}
+
+			return Redirect::to(URL::current() . '/edit');
         }
 
 	}
@@ -214,21 +231,26 @@ class ProgramController extends \BaseController {
 	 * @return Response
 	 */
 	public function destroy($id){
-	
+
 		// find a program id to delete it
 		$program = Program::find($id);
 	
 		//validate if $id was found
 		if (!empty($program->program_id)) {
-			
-			// delete the program id found
-			$program->delete();
-			//store in the session object a message to display in the view
-	      	Session::flash('message', 'SUCCESS: The program was deleted successfully!');
-	      
-
+			try {
+				DB::beginTransaction();		
+					// delete the program id found
+					$program->delete();
+					//store in the session object a message to display in the view
+			      	Session::flash('message', 'SUCCESS: The program was deleted successfully!');
+			    DB::commit();
+			} catch (Exception $e) {
+				Session::flash('message', 'ERROR: The delete process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage().'</em>');
+				Session::flash('error',1);	
+				DB::rollBack();
+			}	
      	 }
-
+			
      	//return to the previous url
       	return Redirect::back();
 	}
@@ -240,6 +262,7 @@ class ProgramController extends \BaseController {
 	 */
 	public function search() 
 	{
+					
 		// Get the string to search in the database
 		$value= Input::get('search_value');
 		// find the string in the database and return the program found
@@ -248,14 +271,15 @@ class ProgramController extends \BaseController {
 				->orwhere('program_description','like','%'.$value.'%')
 				->paginate(7);
 		// Verify if the user applied a filter via the Search Text		
-		if ($programs->getTotal()!=Program::All()->count()){
-			//if a filter is applied a label is display in the view
+		if ($programs->getTotal()!=Program::all()->count()){
+			//if a filter is applied a label Sis display in the view
 			$label_search= $value;
 		}
 		else{
 			//if a filter is NOT applied a label is set empty to avoid to be display it.
 			$label_search='';
 		}
+
 		// Display the view and return some variables to the view to display info
 		return View::make($this->directory_files .'/list')
 			->with(
@@ -276,24 +300,39 @@ class ProgramController extends \BaseController {
 	 */
 	public function export() 
 	{ 
-		//get all programs
-		$data=Program::all();
-		//create a excel files 
-		Excel::create('Programs', function($excel) use($data) {
-			//create a excel sheet
-	        $excel->sheet('Programs', function($sheet) use($data){
-	        	// insert the programs to excel sheet
-	            $sheet->fromArray($data);
-        	});
-        // export to a file
-    	})->export('csv');
+		try {
+			
+			//get all programs
+			$data=Program::all();
+			//create a excel files 
+			Excel::create('Programs', function($excel) use($data) {
+				//create a excel sheet
+		        $excel->sheet('Programs', function($sheet) use($data){
+		        	// insert the programs to excel sheet
+		            $sheet->fromArray($data);
+	        	});
+	        	
+	        // export to a file
+	    	})->export('csv');
+		
+			Session::flash('message', 'SUCCESS: The excel file was exported successfully!');
+			Session::flash('error',0);
 
+		} catch (Exception $e) {
+	    	//Set the message error to display
+			Session::flash('message', 'ERROR:The excel file was NOT exported successfully! <br> <br> <em>Caught exception: ' . $e->getMessage(). '</em>');
+			Session::flash('error',1);	
+			
+		}
+
+		return Redirect::Back();
 	}
 
 
 	public function selectImportFile() 
 	{ 
 
+		
 		//Define the URL to Go Back to the Same Page of the Program List
 		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
 			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
@@ -308,6 +347,7 @@ class ProgramController extends \BaseController {
 		//store in the session object the previous URL
 		Session::put('UrlPrevious',$UrlPrevious);
 
+		
         //show the import form 
         return View::make($this->directory_files .'/import');
         
@@ -322,72 +362,75 @@ class ProgramController extends \BaseController {
 		1) The first row must be the fields hearder .
 		2) if the row has a value in the ID Field it will be update if not will be added.
 		===================================================================================*/
-
-		//get the upload file infomration
-		$file=Input::file('fileToImport');
+		try {
+			//get the upload file infomration
+			$file=Input::file('fileToImport');
+			//validate the user select a file
+			if (!empty($file)) {
+				// Begin a Transaction
+				DB::beginTransaction();
+				//load the file to the database	
+				$programs=Excel::load($file->getRealPath(), function($reader) {
 		
-		//var_dump(get_class_methods(Input::file('image')));
-		
-		//validate the user select a file
-		if (!empty($file)) {
-		
-			//load the file to the databasei
-			$programs=Excel::load($file->getRealPath(), function($reader) {
+					//get the file content / data
+					$results = $reader->get();
 
-				//get the file content / data
-				$results = $reader->get();
-
-				$i=0; // caount add records
-				$j=0; // count update records
-
-				foreach ($results as $key => $row) {
-					// Validate if the file uploaded has the ID field
-					
-					if (!empty ($row->program_id)) {
-						// find the id to decide if it wil be an update or add process
-						$program =  Program::find($row->id);
-						//validate if $id was found so UPDATE it
-						if ($program) {
-							$program->program_id      	 	= $row->program_id;
-							$program->program_name      	= $row->program_name;
-							$program->program_description	= $row->program_description;
-							$program->touch();  //touch: update timestamps
-							$program->save();
-							$j++;
-						}
-						// validate no found so ADD it
-						else{
-							$program = new Program;
-							$program->program_id      	 	= $row->program_id;
-							$program->program_name      	= $row->program_name;
-							$program->program_description	= $row->program_description;
-							$program->save();
-							$i++;
+					$i=0; // caount add records
+					$j=0; // count update records
+				
+					foreach ($results as $key => $row) {
+						// Validate if the file uploaded has the ID field
+						if (!empty ($row->program_id)) {
+							// find the id to decide if it wil be an update or add process
+							$program =  Program::find($row->id);
+							//validate if $id was found so UPDATE it
+							if ($program) {
+								$program->program_id      	 	= $row->program_id;
+								$program->program_name      	= $row->program_name;
+								$program->program_description	= $row->program_description;
+								$program->touch();  //touch: update timestamps
+								$program->save();
+								$j++;
+							}
+							// validate no found so ADD it
+							else{
+								$program = new Program;
+								$program->program_id      	 	= $row->program_id;
+								$program->program_name      	= $row->program_name;
+								$program->program_description	= $row->program_description;
+								$program->save();
+								$i++;
+							}
 						}
 					}
-				}
-				// Store the message information for the user in the Session Object
-				
-				if (($i+$j)==0){
-					Session::flash('message', 'ERROR: The import process did not add or update any record successfully!');
-					Session::flash('error',1);	
-				}else{
-					Session::flash('message', 'SUCCESS: The import process add '.  $i . ' records and update '. $j . ' successfully!');
-					Session::flash('error',0);	
-				}
+					// Store the message information for the user in the Session Object
+					if (($i+$j)==0){
+						Session::flash('message', 'ERROR: The import process did not add or update any record successfully!');
+						Session::flash('error',1);	
+					}else{
+						Session::flash('message', 'SUCCESS: The import process add '.  $i . ' records and update '. $j . ' successfully!');
+						Session::flash('error',0);	
+					}
+   					//Commint the Transaction
+					DB::commit();
 
-				
-			})->get();
-		
+				})->get();
+
+			}
+	        else{
+		    	Session::flash('message', 'ERROR: The file to import is missing, you need to choose a file!');
+				Session::flash('error',1);  	
+		    }	
+
+	    } catch (Exception $e) {
+	    	//Set the message error to display
+			Session::flash('message', 'ERROR: The import process did not add or update any record successfully! <br> <br> <em>Caught exception: ' . $e->getMessage(). '</em>');
+			Session::flash('error',1);	
+			//Rollback the Transaction
+			DB::rollBack();
 		}
-        else{
-	    	Session::flash('message', 'ERROR: The file to import is missing, you need to choose a file!');
-			Session::flash('error',1);  	
-	    }	
-	   	//return to the previous url;
-		//return Redirect::to (Session::get('UrlPrevious'));
+	   	//Redirect to the import page
 	    return Redirect::to(URL::to('programs/import_file'));
-
 	}
 }
 

@@ -22,14 +22,16 @@
 					<!--Display a message return from the controller in the Session Object-->
 					<div class="col-sm-12 text-center">
 							@if (Session::has('message'))
-
-							 <p class="alert alert-info" data-dismiss="alert">
-
-							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<strong>
-										{{ Session::get('message') }}
-									</strong>
-							 </p>
+								@if (Session::has('error'))
+							 		<p class="alert alert-danger" data-dismiss="alert">
+							 	@else
+									<p class="alert alert-info" data-dismiss="alert">
+							 	@endif
+								 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<strong>
+											{{ Session::get('message') }}
+										</strong>
+								 </p>
 							@endif
 					</div>
 				</div>
@@ -84,7 +86,7 @@
 						<!--{{Form::button('Go Back',array ('class'=>'btn btn-default'));}}-->
 									
 						<!--{{link_to(URL::previous(), 'Go Back', array('class' => 'btn btn-primary'));}}-->
-						{{link_to(Url::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+						{{link_to(URL::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
 
 					</div>	
 					

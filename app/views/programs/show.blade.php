@@ -30,7 +30,7 @@
 						<div class="col-sm-2 text-left">
 									
 									{{Form::label('Program ID');}}						
-									{{Form::text('program_id',null, array('class' => 'form-control','size' => '10px'));}}
+									{{Form::text('program_id',null, array('class' => 'form-control','size' => '10px','readonly' => 'readonly'));}}
 								</div>
 									<br>
 						</div>
@@ -40,7 +40,7 @@
 						<div class="col-sm-12 text-left">
 								<div class="control-group">
 									{{Form::label('Program Name');}}						
-									{{Form::text('program_name',null,array('class' => 'form-control','size' => '10px'));}}
+									{{Form::text('program_name',null,array('class' => 'form-control','size' => '10px','readonly' => 'readonly'));}}
 								</div>
 						</div>
 					</div>
@@ -49,21 +49,14 @@
 
 					<div class="control-group">
 						{{Form::label('Program Description');}}
-						{{Form::textarea('program_description',null,array('class' => 'form-control','size' => '10px'));}}
+						{{Form::textarea('program_description',null,array('class' => 'form-control','size' => '10px','readonly' => 'readonly'));}}
 					</div>
 
 					<hr>	
 
 					<div class="control-group">
 						
-						<!--{{link_to(URL::previous(), 'Go Back', array('class' => 'btn btn-primary'));}}-->
-
-
-						{{link_to(Url::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
-
-
-
-	
+						{{link_to(URL::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
 
 					</div>	
 				</div>

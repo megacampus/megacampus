@@ -36,7 +36,7 @@
 		    width: 400px;
 		    height: 500px;
 		    position: absolute;
-		    top: 20%;
+		    top: 15%;
 		    left: 45%;
 		    margin-top: -25px;
 		    margin-left: -200px;

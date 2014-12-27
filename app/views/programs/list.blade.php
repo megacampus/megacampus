@@ -21,7 +21,27 @@
 	          <h3 class="panel-title">{{$title}}</h3>
 			</div>           
 
-	        <div class="panel-body bg-gray">
+	        <div class="panel-body">
+				<div class="row">
+					<!--Display a message return from the controller in the Session Object-->
+					<div class="col-sm-12 text-center">
+							@if (Session::has('message'))
+								
+								@if (Session::has('error'))
+									<p class="alert alert-danger" data-dismiss="alert">
+								@else
+									<p class="alert alert-info" data-dismiss="alert">
+								@endif
+
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<strong>
+											{{ Session::get('message') }}
+										</strong>
+								</p>
+
+							@endif
+					</div>
+				</div>
 
 				<div class="row">	
 
