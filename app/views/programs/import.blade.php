@@ -13,7 +13,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
 
-              <h3 class="panel-title">Import Programs</h3>
+              <h3 class="panel-title">{{Lang::get('labels.import_program')}}</h3>
            
 			</div>           
          	 <div class="panel-body">
@@ -43,19 +43,19 @@
 
 				{{ Form::open(array('url'=>'programs/import','files'=>true)) }}
   
-					{{ Form::label('Upload File') }}
+					{{ Form::label(Lang::get('labels.upload_file')) }}
 
 					{{ Form::file('fileToImport') }}
 				  	<br/><br/>
 				  	<!-- submit buttons -->
 				  	<!--{{ Form::submit('Preview', array('class'=>"btn btn-sm btn-primary")) }}-->
-					{{ Form::submit('Import', array('class'=>"btn btn-sm btn-primary")) }}
+					{{ Form::submit(Lang::get('buttons.import'), array('class'=>"btn btn-sm btn-primary")) }}
 				  
 				  	<!-- reset buttons -->
-				  	{{ Form::reset('Clear', array('class'=>"btn btn-sm btn-primary")) }}
+				  	{{ Form::reset(Lang::get('buttons.clear'), array('class'=>"btn btn-sm btn-primary")) }}
 
 
-				  	{{link_to(URL::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+				  	{{link_to(URL::to(Session::get('UrlPrevious')), Lang::get('buttons.back'), array('class' => 'btn btn-sm btn-primary'));}}
 
 
 			  

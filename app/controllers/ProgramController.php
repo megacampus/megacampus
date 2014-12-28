@@ -310,17 +310,18 @@ class ProgramController extends \BaseController {
 		        $excel->sheet('Programs', function($sheet) use($data){
 		        	// insert the programs to excel sheet
 		            $sheet->fromArray($data);
+		           Session::flash('message', 'SUCCESS: The export process was executed successfully!');
+			Session::flash('error',0);
 	        	});
 	        	
 	        // export to a file
 	    	})->export('csv');
 		
-			Session::flash('message', 'SUCCESS: The excel file was exported successfully!');
-			Session::flash('error',0);
+			
 
 		} catch (Exception $e) {
 	    	//Set the message error to display
-			Session::flash('message', 'ERROR:The excel file was NOT exported successfully! <br> <br> <em>Caught exception: ' . $e->getMessage(). '</em>');
+			Session::flash('message', 'ERROR: The export process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage(). '</em>');
 			Session::flash('error',1);	
 			
 		}

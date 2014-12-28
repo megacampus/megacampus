@@ -12,7 +12,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
 
-              <h3 class="panel-title">Show Program</h3>
+              <h3 class="panel-title">{{Lang::get('labels.view_program');}}</h3>
            
 			</div>           
          	 <div class="panel-body">
@@ -29,7 +29,7 @@
 					<div class="row">
 						<div class="col-sm-2 text-left">
 									
-									{{Form::label('Program ID');}}						
+									{{Form::label(Lang::get('columns.program_id'));}}						
 									{{Form::text('program_id',null, array('class' => 'form-control','size' => '10px','readonly' => 'readonly'));}}
 								</div>
 									<br>
@@ -39,7 +39,8 @@
 					<div class="row">
 						<div class="col-sm-12 text-left">
 								<div class="control-group">
-									{{Form::label('Program Name');}}						
+									<br>
+									{{Form::label(Lang::get('columns.program_name'));}}		
 									{{Form::text('program_name',null,array('class' => 'form-control','size' => '10px','readonly' => 'readonly'));}}
 								</div>
 						</div>
@@ -48,7 +49,7 @@
 					<br>
 
 					<div class="control-group">
-						{{Form::label('Program Description');}}
+						{{Form::label(Lang::get('columns.program_description'));}}
 						{{Form::textarea('program_description',null,array('class' => 'form-control','size' => '10px','readonly' => 'readonly'));}}
 					</div>
 
@@ -56,7 +57,7 @@
 
 					<div class="control-group">
 						
-						{{link_to(URL::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+						{{link_to(URL::to(Session::get('UrlPrevious')), Lang::get('buttons.back'), array('class' => 'btn btn-sm btn-primary'));}}
 
 					</div>	
 				</div>

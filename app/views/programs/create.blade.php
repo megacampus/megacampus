@@ -15,7 +15,7 @@
 	    <div class="panel panel-default">
 
 	         <div class="panel-heading">
-	     		 <h3 class="panel-title">{{$title}} </h3>
+	     		 <h3 class="panel-title">{{Lang::get('labels.add_program');}} </h3>
 			</div>           
 
 	        <div class="panel-body">
@@ -58,7 +58,7 @@
 				<div class="row">
 					<div class="col-sm-2 text-left">
 							<div class="control-group">
-								{{Form::label('Program ID');}}						
+								{{Form::label(Lang::get('columns.program_id'));}}				
 								{{Form::text('program_id','', array('class' => 'form-control','size' => '10px'));}}
 							</div>
 								<br>
@@ -68,7 +68,7 @@
 				<div class="row">
 					<div class="col-sm-12 text-left">
 							<div class="control-group">
-								{{Form::label('Program Name');}}						
+								{{Form::label(Lang::get('columns.program_name'));}}
 								{{Form::text('program_name','',array('class' => 'form-control','size' => '10px'));}}
 							</div>
 					</div>
@@ -77,17 +77,17 @@
 				<br>
 
 				<div class="control-group">
-					{{Form::label('Program Description');}}
+					{{Form::label(Lang::get('columns.program_description'));}}
 					{{Form::textarea('program_description','',array('class' => 'form-control','size' => '10px'));}}
 				</div>
 
 				<hr>
 
 				<div class="control-group">
-					{{Form::submit('Add',array ('class'=>'btn btn-sm btn-primary'));}}
-					{{Form::reset('Clear' ,array ('class'=>'btn btn-sm btn-primary'));}}
+					{{Form::submit(Lang::get('buttons.add'),array ('class'=>'btn btn-sm btn-primary'));}}
+					{{Form::reset(Lang::get('buttons.clear') ,array ('class'=>'btn btn-sm btn-primary'));}}
 				
-					{{link_to(URL::to(Session::get('UrlPrevious')), 'Back', array('class' => 'btn btn-sm btn-primary'));}}
+					{{link_to(URL::to(Session::get('UrlPrevious')), Lang::get('buttons.back'), array('class' => 'btn btn-sm btn-primary'));}}
 
 					
 				</div>	

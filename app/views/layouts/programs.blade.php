@@ -62,7 +62,7 @@
 		.bottomcodeby{
 			padding-right: 20px;
 		}
-		
+
 
 	</style>
 		
@@ -91,19 +91,23 @@
 		<div class="collapse navbar-collapse">
 			
 			<ul class="nav navbar-nav" >
-				<li><a href="#">Dashboard</a></li>
-				<li><a href="/programs">Programs</a></li>
-				<li><a href="#">Admissions</a></li>
-				<li><a href="#">Employees</a></li>
-				<li><a href="#">Inventory</a></li>
-				<li><a href="#">Services</a></li>
-				<li><a href="#">Finances</a></li>
-				<li><a href="#">Security</a></li>
-				<li><a href="#">Settings</a></li>
+				<li><a href="#">{{Lang::get('menus.dashboard');}}</a></li>
+				<li><a href="/programs">{{Lang::get('menus.programs');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.admissions');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.employees');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.inventory');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.services');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.finances');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.security');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.settings');}}</a></li>
 			</ul>
 			<div class="col-sm-12 col-md-1 pull-right">
 				<ul class="nav navbar-nav navbar-right">	
-					<li><a href="#"><i class="fa fa-power-off"></i>&nbsp;Logout</a></li>
+					<li>
+						<a href="#">
+							<i class="fa fa-power-off"></i>&nbsp;{{Lang::get('menus.logout');}}
+						</a>
+					</li>
 				</ul>
 			</div>
 			
@@ -117,19 +121,19 @@
 		    <div class="panel panel-default">
 
 		        <div class="panel-heading">
-		          <h3 class="panel-title">Menu</h3>
+		          <h3 class="panel-title">{{Lang::get('labels.leftpanel');}}</h3>
 				</div>           
 
 				<table class= "table table-bordered table-hover" style="color:blue;">
 					
-					<tr><td>Campus</td></tr>
-					<tr><td><a href="/programs">Programs</a></td></tr>
-					<tr><td>Courses</td></tr>
-					<tr><td>Teachers</td></tr>
-					<tr><td>Students</td></tr>
-					<tr><td>Calendar</td></tr>
+					<tr><td>{{Lang::get('menus.campus');}}</td></tr>
+					<tr><td><a href="/programs">{{Lang::get('menus.programs');}}</a></td></tr>
+					<tr><td>{{Lang::get('menus.courses');}}</td></tr>
+					<tr><td>{{Lang::get('menus.teachers');}}</td></tr>
+					<tr><td>{{Lang::get('menus.students');}}</td></tr>
+					<tr><td>{{Lang::get('menus.calendar');}}</td></tr>
 					<tr><td>&nbsp</td></tr>
-					<tr><td>Help</td></tr>
+					<tr><td>{{Lang::get('menus.help');}}</td></tr>
 					
 				</table>
 			</div>
@@ -149,7 +153,7 @@
 				<p class="bottombrand"> MegaCampus (2014-2016) &copy; </p>
 			</div>
 			<div class="col-sm-6" align="right">
-				<p class="bottomcodeby">Code by TMTechnologies &reg; </p>
+				<p class="bottomcodeby">{{Lang::get('labels.codeby');}} TMTechnologies &reg; </p>
 			</div>
 		</div>
 	</div>

@@ -18,7 +18,7 @@
 	    <div class="panel panel-default" >
 
 	        <div class="panel-heading">
-	          <h3 class="panel-title">{{$title}}</h3>
+	          <h3 class="panel-title">{{Lang::get('labels.list_program');}}</h3>
 			</div>           
 
 	        <div class="panel-body">
@@ -50,15 +50,15 @@
 						<a href="{{URL::to ('programs/create')}}" class="btn btn-sm btn-primary">
 						<!--{{$create_link}}-->
 							<!--i class="glyphicon glyphicon-plus"></i-->
-							&nbsp;&nbsp;Add&nbsp;&nbsp;
+							{{Lang::get('buttons.add');}}
 						</a>
 						<a href={{URL::to ('programs/export')}} class="btn btn-sm btn-primary">		
 							<!--i class="glyphicon glyphicon-open"></i-->
-							Export
+							{{Lang::get('buttons.export');}}
 						</a>
 						<a href="{{URL::to ('programs/import_file')}}" class="btn btn-sm btn-primary">	 
 							<!--i class="glyphicon glyphicon-save"></i-->
-							Import
+							{{Lang::get('buttons.import');}}
 						</a>
 					</div>	
 					
@@ -79,7 +79,7 @@
 
 							<div class="input-group">
 						      
-						      <input name="search_value" type="text" placeholder='Searching Text...' class="form-control">
+						      <input name="search_value" type="text" placeholder="{{Lang::get('labels.searchingtext');}}" class="form-control">
 
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -102,12 +102,24 @@
 					        <tr>
 					            <!--Displays the Table Headers"-->
 					            <th data-field="id"></th>
-					            <th data-field="name">PROGRAM ID</th>
-					            <th data-field="name">PROGRAM NAME</th>
-					            <th data-field="description">PROGRAM DESCRIPTION</th>
-					            <th data-field="created_at">CREATED AT</th>
-					            <th data-field="updated_at">UPDATED AT</th>
-					            <th data-field="updated_at" width="182">ACTIONS</th>
+					            <th data-field="name">
+					            	{{Lang::get('columns.program_id');}}
+					            </th>
+					            <th data-field="name">
+					            	{{Lang::get('columns.program_name');}}
+					            </th>
+					            <th data-field="description">
+					            	{{Lang::get('columns.program_description');}}
+					            </th>
+					            <th data-field="created_at">
+					            	{{Lang::get('columns.created_at');}}
+					            </th>
+					            <th data-field="updated_at">
+					            	{{Lang::get('columns.updated_at');}}
+					            </th>
+					            <th data-field="updated_at" width="182">
+					            	{{Lang::get('columns.actions');}}
+					            </th>
 					           	
 					        </tr>
 					    </thead>
@@ -137,13 +149,13 @@
 										<a 	class="btn btn-sm btn-primary" 
 								        	href="{{ URL::to('programs/' . $program->id . '/show') }}">
 												<!--i class="glyphicon glyphicon-file"></i-->
-												&nbsp;View&nbsp;
+												{{Lang::get('buttons.view');}}
 								        </a>
 										
 										<a 	class="btn btn-sm btn-primary" 
 								        	href="{{ URL::to('programs/' . $program->id . '/edit') }}">
 												<!--i class="glyphicon glyphicon-pencil"></i-->				
-												&nbsp;Edit&nbsp;				        	
+												{{Lang::get('buttons.edit');}}				        	
 								        </a>
 								    
 										 {{ Form::open(array('url'=> 'programs/'. $program->id,'method' => 'DELETE'))}}
@@ -156,7 +168,7 @@
 									        	data-title="Question" 
 									        	data-message= 'Are you sure you want to delete the item selected?'> 
 									        	<!--i class="glyphicon glyphicon-trash"></i-->
-									        	Delete
+									        	{{Lang::get('buttons.delete');}}
 									        </button>
 									    
 									    	@include('php.messagebox')
@@ -180,7 +192,7 @@
 				<!-- Display a label with the from/to of the pagination-->					
 				<div class="col-sm-3 text-left">
 					<div align="left">
-						<p> Showing {{$programs->getFrom()}} de {{$programs->getTo()}} of {{$programs->getTotal()}} items </p>
+						<p> {{Lang::get('labels.showing');}} {{$programs->getFrom()}} {{Lang::get('labels.to');}} {{$programs->getTo()}} {{Lang::get('labels.of');}} {{$programs->getTotal()}} {{Lang::get('labels.items');}} </p>
 					</div>
 				</div>
 
