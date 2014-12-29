@@ -13,6 +13,8 @@ return array(
 	'clear'    			=> 'Limpiar',
 	'reset'    			=> 'Limpiar',
 	'back'    			=> 'Regresar',
+	'yes'    			=> 'Si',
+	'no'    			=> 'No',
 
 
 );

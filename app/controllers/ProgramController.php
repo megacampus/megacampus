@@ -102,6 +102,7 @@ class ProgramController extends \BaseController {
 				->withInput()->withErrors($validator);
 		} else {
 			try {
+
 				DB::beginTransaction();
 					// store the data to the database
 					$program = new Program;
@@ -110,12 +111,12 @@ class ProgramController extends \BaseController {
 					$program->program_description = Input::get('program_description');
 					$program->save();
 					//store in the session object a message to display in the view
-					Session::flash('message', 'SUCCESS: Program was created successfully!');	
+					Session::flash('message', Lang::get('messages.success'));	
 				DB::commit();
 
 			} catch (Exception $e) {
 				
-	    		Session::flash('message', 'ERROR: The add process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage().'</em>');
+	    		Session::flash('message', Lang::get('messages.error') . '<br> <br> <em>' . Lang::get('messages.error_caught_exception') .'&nbsp;' . $e->getMessage().'</em>');
 				Session::flash('error',1);	
 
 				DB::rollBack();
@@ -196,7 +197,8 @@ class ProgramController extends \BaseController {
         } else {
             // store the data to the database
 			try {
-	            DB::beginTransaction();
+				
+				DB::beginTransaction();
 		            $program = Program::find($id);
 		            $program->program_id      		= Input::get('program_id');
 		            $program->program_name     		= Input::get('program_name');
@@ -204,7 +206,7 @@ class ProgramController extends \BaseController {
 		            $program->touch();
 		 			$program->save();
 		            //store in the session object a message to display in the view
-		          	Session::flash('message', 'SUCCESS: The program was updated successfully!');
+		          	Session::flash('message', Lang::get('messages.success'));
 		      	  	//return to the previous url;
 		      	  	//return Redirect::to (Session::get('UrlPrevious'));
 		      	  	return Redirect::to(URL::current() . '/edit');
@@ -212,7 +214,7 @@ class ProgramController extends \BaseController {
 
 	    	} catch (Exception $e) {
 
-	    		Session::flash('message', 'ERROR: The update process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage().'</em>');
+	    		Session::flash('message', Lang::get('messages.error'). '<br> <br> <em>' . Lang::get('messages.error_caught_exception') .'&nbsp;' . $e->getMessage().'</em>');
 				Session::flash('error',1);	
 
 				DB::rollBack();
@@ -238,16 +240,18 @@ class ProgramController extends \BaseController {
 		//validate if $id was found
 		if (!empty($program->program_id)) {
 			try {
+
 				DB::beginTransaction();		
 					// delete the program id found
 					$program->delete();
 					//store in the session object a message to display in the view
-			      	Session::flash('message', 'SUCCESS: The program was deleted successfully!');
+			      	Session::flash('message', Lang::get('messages.success'));
 			    DB::commit();
 			} catch (Exception $e) {
-				Session::flash('message', 'ERROR: The delete process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage().'</em>');
+				Session::flash('message', Lang::get('messages.error') . '<br> <br> <em>' . Lang::get('messages.error_caught_exception') .'&nbsp;' . $e->getMessage().'</em>');
 				Session::flash('error',1);	
 				DB::rollBack();
+
 			}	
      	 }
 			
@@ -309,9 +313,9 @@ class ProgramController extends \BaseController {
 				//create a excel sheet
 		        $excel->sheet('Programs', function($sheet) use($data){
 		        	// insert the programs to excel sheet
-		            $sheet->fromArray($data);
-		           Session::flash('message', 'SUCCESS: The export process was executed successfully!');
-			Session::flash('error',0);
+		        	$sheet->fromArray($data);
+		        	Session::flash('message', Lang::get('messages.success'));
+					Session::flash('error',0);
 	        	});
 	        	
 	        // export to a file
@@ -321,7 +325,7 @@ class ProgramController extends \BaseController {
 
 		} catch (Exception $e) {
 	    	//Set the message error to display
-			Session::flash('message', 'ERROR: The export process was NOT executed successfully! <br> <br> <em>Caught exception: ' . $e->getMessage(). '</em>');
+			Session::flash('message', Lang::get('messages.error') . '<br> <br> <em>' . Lang::get('messages.error_caught_exception') .'&nbsp;' .$e->getMessage(). '</em>');
 			Session::flash('error',1);	
 			
 		}
@@ -406,12 +410,12 @@ class ProgramController extends \BaseController {
 					}
 					// Store the message information for the user in the Session Object
 					if (($i+$j)==0){
-						Session::flash('message', 'ERROR: The import process did not add or update any record successfully!');
+						Session::flash('message', Lang::get('messages.error') . '<br> <br> <em>' . Lang::get('messages.error_file_format') . '</em>');
 						Session::flash('error',1);	
 					}else{
-						Session::flash('message', 'SUCCESS: The import process add '.  $i . ' records and update '. $j . ' successfully!');
+						Session::flash('message', Lang::get('messages.success_add') .'&nbsp;' .  $i .'&nbsp;' . Lang::get('messages.success_update') .'&nbsp;' . $j .'&nbsp;' . Lang::get('messages.successfully'));
 						Session::flash('error',0);	
-					}
+					} 
    					//Commint the Transaction
 					DB::commit();
 
@@ -419,13 +423,13 @@ class ProgramController extends \BaseController {
 
 			}
 	        else{
-		    	Session::flash('message', 'ERROR: The file to import is missing, you need to choose a file!');
+		    	Session::flash('message', Lang::get('messages.error_file_missing'));
 				Session::flash('error',1);  	
 		    }	
 
 	    } catch (Exception $e) {
 	    	//Set the message error to display
-			Session::flash('message', 'ERROR: The import process did not add or update any record successfully! <br> <br> <em>Caught exception: ' . $e->getMessage(). '</em>');
+			Session::flash('message', Lang::get('messages.error') . '<br> <br> <em>' . Lang::get('messages.error_caught_exception') .'&nbsp;' . $e->getMessage(). '</em>');
 			Session::flash('error',1);	
 			//Rollback the Transaction
 			DB::rollBack();

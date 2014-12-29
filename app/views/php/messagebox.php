@@ -1,6 +1,9 @@
 
 <!-- Modal Dialog -->
 
+<!DOCTYPE html>
+  
+
 <div class="modal fade" id="modalWindow" tabindex="-1" role="dialog" aria-labelledby="modalWindowLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">

@@ -165,8 +165,8 @@
 									        	type="button" 
 									        	data-toggle="modal" 
 									        	data-target="#modalWindow" 
-									        	data-title="Question" 
-									        	data-message= 'Are you sure you want to delete the item selected?'> 
+									        	data-title= "{{Lang::get('messages.question')}}"
+									        	data-message= "{{Lang::get('messages.question_message')}}"> 
 									        	<!--i class="glyphicon glyphicon-trash"></i-->
 									        	{{Lang::get('buttons.delete');}}
 									        </button>
