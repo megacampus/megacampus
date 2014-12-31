@@ -1,7 +1,7 @@
 @extends('layouts.programs')
 
 @section('title')
-	<title> Edit Programs </title>
+	<title> {{Lang::get('labels.edit_program')}}</title>
 @stop
 
 
@@ -13,7 +13,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
 
-              <h3 class="panel-title">{{Lang::get('labels.edit_program');}}</h3>
+              <h3 class="panel-title">{{Lang::get('labels.edit_program')}}</h3>
            
 			</div>           
          	 <div class="panel-body">
@@ -21,31 +21,13 @@
 				<div class="row">
 					<!--Display a message return from the controller in the Session Object-->
 					<div class="col-sm-12 text-center">
-							@if (Session::has('message'))
-								@if (Session::has('error'))
-							 		<p class="alert alert-danger" data-dismiss="alert">
-							 	@else
-									<p class="alert alert-info" data-dismiss="alert">
-							 	@endif
-								 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<strong>
-											{{ Session::get('message') }}
-										</strong>
-								 </p>
-							@endif
+
+							@include('php.popup_message')
+
 					</div>
 				</div>
 
-				@if ($errors->all())
-					<div class="alert alert-danger" data-dismiss="alert">
-
-					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<strong>ERRORS:
-							{{ HTML::ul($errors->all())}}
-							</strong>
-					</div>	
-				@endif
-
+				@include('php.validation_message')
 				
 				{{ Form::model($program, array('route' => array('programs.update', $program->id), 'method' => 'PUT')) }}
 
@@ -54,7 +36,7 @@
 					
 					<div class="row">
 						<div class="col-sm-2 text-left">
-									{{Form::label(Lang::get('columns.program_id'));}}   
+									{{Form::label(Lang::get('fields.program_id'));}}   
 									{{Form::text('program_id',null, array('class' => 'form-control','size' => '10px'));}}
 								</div>
 									<br>
@@ -65,7 +47,7 @@
 						<div class="col-sm-12 text-left">
 								<div class="control-group">
 								<br>	
-									{{Form::label(Lang::get('columns.program_name'));}}		
+									{{Form::label(Lang::get('fields.program_name'));}}		
 									{{Form::text('program_name',null,array('class' => 'form-control','size' => '10px'));}}
 								</div>
 						</div>
@@ -74,7 +56,7 @@
 					<br>
 
 					<div class="control-group">
-						{{Form::label(Lang::get('columns.program_description'));}}
+						{{Form::label(Lang::get('fields.program_description'));}}
 						{{Form::textarea('program_description',null,array('class' => 'form-control','size' => '10px'));}}
 					</div>
 

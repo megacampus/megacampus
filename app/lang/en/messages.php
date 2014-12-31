@@ -20,8 +20,6 @@ return array(
 );
 
 
-data-title="Question"
-data-message= 'Are you sure you want to delete the item selected?'> 
 
 /*'message', 'SUCCESS: The program was created successfully!')		
 'message', 'SUCCESS: The program was updated successfully!');

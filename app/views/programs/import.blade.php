@@ -1,7 +1,7 @@
 @extends('layouts.programs')
 
 @section('title')
-	<title> Import Programs </title>
+	<title> {{Lang::get('labels.import_program')}} </title>
 @stop
 
 
@@ -22,24 +22,13 @@
 				<div class="row">
 					<!--Display a message return from the controller in the Session Object-->
 					<div class="col-sm-12 text-center">
-							@if (Session::has('message'))
-
-								@if (Session::get('error'))
-								 	<p class="alert alert-danger" data-dismiss="alert">
-								@else
-								 	<p class="alert alert-info" data-dismiss="alert">
-   								@endif
-
-							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<strong>
-										{{ Session::get('message') }}
-									</strong>
-							 </p>
-							@endif
+							
+							@include('php.popup_message')
+							
 					</div>
 				</div>
 
-				{{ HTML::ul($errors->all())}}
+				<!--{{ HTML::ul($errors->all())}}-->
 
 				{{ Form::open(array('url'=>'programs/import','files'=>true)) }}
   
@@ -72,3 +61,10 @@
 
 	
 @stop
+
+
+
+
+ 
+
+ 

@@ -1,8 +1,4 @@
-
-<!-- Modal Dialog -->
-
-<!DOCTYPE html>
-  
+<!--script to display a modal confirmation window -->
 
 <div class="modal fade" id="modalWindow" tabindex="-1" role="dialog" aria-labelledby="modalWindowLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
@@ -15,10 +11,9 @@
         <p>Message</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="confirm">Yes</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-default" id="confirm">{{Lang::get('buttons.yes')}}</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">{{Lang::get('buttons.no')}}</button>
       </div>
     </div>
   </div>
 </div>
-

@@ -2,6 +2,12 @@
 
 return array(
 
+	'home_title'			=>'MegaCampus en la Nube',
+	'home_subtitle'			=>'Un sistema completo que le ayudará a gestionar las operaciones de su Instituto. <br> Desde Institutos Preescolares hasta Campus Universitarios',
+	'home_group1'			=>'Eventos de la Semana',
+	'home_group2'			=>'Eventos del Mes',
+	'home_group3'			=>'Eventos Siguiente Mes',
+
 	'leftpanel' 			=> 'Menú',
 	'searchingtext'			=> 'Texto a Buscar...',
 	'showing'				=> 'Mostrando del',

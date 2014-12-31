@@ -4,7 +4,7 @@
 
 @section('title')
 
-	<title> {{$title}} </title>
+	<title> {{Lang::get('labels.list_program')}} </title>
 @stop
 
 
@@ -18,28 +18,16 @@
 	    <div class="panel panel-default" >
 
 	        <div class="panel-heading">
-	          <h3 class="panel-title">{{Lang::get('labels.list_program');}}</h3>
+	          <h3 class="panel-title">{{Lang::get('labels.list_program')}}</h3>
 			</div>           
 
 	        <div class="panel-body">
 				<div class="row">
 					<!--Display a message return from the controller in the Session Object-->
 					<div class="col-sm-12 text-center">
-							@if (Session::has('message'))
-								
-								@if (Session::has('error'))
-									<p class="alert alert-danger" data-dismiss="alert">
-								@else
-									<p class="alert alert-info" data-dismiss="alert">
-								@endif
+							
+							@include('php.popup_message')
 
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										<strong>
-											{{ Session::get('message') }}
-										</strong>
-								</p>
-
-							@endif
 					</div>
 				</div>
 
@@ -97,28 +85,28 @@
 				
 				<div class="table-responsive">
 		
-					<table class= "table table-striped table-bordered table-condensed table-hover">
+					<table class= "table table-striped table-bordered table-condensed table-hover" >
 					    <thead>
 					        <tr>
 					            <!--Displays the Table Headers"-->
 					            <th data-field="id"></th>
 					            <th data-field="name">
-					            	{{Lang::get('columns.program_id');}}
+					            	{{Lang::get('fields.program_id');}}
 					            </th>
 					            <th data-field="name">
-					            	{{Lang::get('columns.program_name');}}
+					            	{{Lang::get('fields.program_name');}}
 					            </th>
 					            <th data-field="description">
-					            	{{Lang::get('columns.program_description');}}
+					            	{{Lang::get('fields.program_description');}}
 					            </th>
 					            <th data-field="created_at">
-					            	{{Lang::get('columns.created_at');}}
+					            	{{Lang::get('fields.created_at');}}
 					            </th>
 					            <th data-field="updated_at">
-					            	{{Lang::get('columns.updated_at');}}
+					            	{{Lang::get('fields.updated_at');}}
 					            </th>
-					            <th data-field="updated_at" width="182">
-					            	{{Lang::get('columns.actions');}}
+					            <th data-field="actions" width="182">
+					            	{{Lang::get('fields.actions');}}
 					            </th>
 					           	
 					        </tr>

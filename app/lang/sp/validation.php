@@ -13,6 +13,9 @@ return array(
 	|
 	*/
 
+	
+
+
 	"accepted"             => "The :attribute must be accepted.",
 	"active_url"           => "The :attribute is not a valid URL.",
 	"after"                => "The :attribute must be a date after :date.",
@@ -56,7 +59,7 @@ return array(
 	"not_in"               => "The selected :attribute is invalid.",
 	"numeric"              => "The :attribute must be a number.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "The :attribute field is required.",
+	"required"             => "El campo :attribute es requerido.",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -82,22 +85,21 @@ return array(
 	| convention "attribute.rule" to name the lines. This makes it quick to
 	| specify a specific custom language line for a given attribute rule.
 	|
-	|
 	|	'custom' => array(
 	|		'attribute-name' => array(
 	|			'rule-name' => 'custom-message',
 	|		),
 	|	),
 	*/
-
+	
 	'custom' => array(
 		'program_id' => array(
-			'required' => 'The program id field is required.'),
+			'required' => 'El campo programa id es requerido.'),
 		'program_name' => array(
-			'required' => 'The program name field is required'),
+			'required' => 'El campo nombre de programa es requerido.'),
 		'program_description' => array(
-			'required' => 'The program description field is required'),
-		
+			'required' => 'El campo descripcion de programa es requerido.'),
+	
 	),
 
 

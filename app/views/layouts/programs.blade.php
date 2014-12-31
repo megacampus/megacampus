@@ -11,7 +11,7 @@
 
  
 	@section('title')
-		<title>*** Missing Title Description ***</title>
+		<title>Title Description</title>
 	@show
 
 
@@ -243,6 +243,8 @@ $(document).ready(function() {
 function notification() {
     console.log('entro a notification');
 }
+
+
 
 </script>
 

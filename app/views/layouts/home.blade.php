@@ -11,7 +11,7 @@
 
  
 	@section('title')
-		<title>*** Missing Title Description ***</title>
+		<title>Title Description</title>
 	@show
 
 
@@ -79,19 +79,21 @@
 		<div class="collapse navbar-collapse">
 			
 			<ul class="nav navbar-nav" >
-				<li><a href="#">Dashboard</a></li>
-				<li><a href="/programs">Programs</a></li>
-				<li><a href="#">Admissions</a></li>
-				<li><a href="#">Employees</a></li>
-				<li><a href="#">Inventory</a></li>
-				<li><a href="#">Services</a></li>
-				<li><a href="#">Finances</a></li>
-				<li><a href="#">Security</a></li>
-				<li><a href="#">Settings</a></li>
+				<li><a href="#">{{Lang::get('menus.dashboard');}}</a></li>
+				<li><a href="/programs">{{Lang::get('menus.programs');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.admissions');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.employees');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.inventory');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.services');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.finances');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.security');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.settings');}}</a></li>
 			</ul>
 			<div class="col-sm-12 col-md-1 pull-right">
 				<ul class="nav navbar-nav navbar-right">	
-					<li><a href="#"><i class="fa fa-power-off"></i>&nbsp;Logout</a></li>
+					<li><a href="#"><i class="fa fa-power-off"></i>&nbsp;
+						{{Lang::get('menus.logout');}}
+					</a></li>
 				</ul>
 			</div>
 			

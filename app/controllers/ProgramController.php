@@ -25,7 +25,9 @@ class ProgramController extends \BaseController {
             'program_description' 	=> 'required' //|numeric'
         );
 
+
 	private $directory_files = "programs";
+
 
 	public function index()
 	{
@@ -189,7 +191,7 @@ class ProgramController extends \BaseController {
 	{
 		// validate the fields base on the rules define
         $validator = Validator::make(Input::all(), $this->rules);
-        // Send to view the errrs messages
+        // Send to view the errors messages
         if ($validator->fails()) {
             return Redirect::to('programs/' . $id . '/edit')
                 ->withErrors($validator);

@@ -24,8 +24,8 @@
 	<div class="row">
 		<div class="jumbotron" >	
 			<div class="text-center"-->
-			    <h1>MegaCampus on the Cloud</h1>
-			    <p class="lead">A complete software to help you to manage the information of your education institute.<br>From a Small Preschool Institute to a Huge University Campus</p>
+			    <h1>{{Lang::get('labels.home_title');}}</h1>
+			    <p class="lead">{{Lang::get('labels.home_subtitle');}}</p>
 			</div>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 			<div class="panel panel-default">
 	            <div class="panel-heading">
 
-					<h3 class="panel-title">This Week Event</h3>
+					<h3 class="panel-title">{{Lang::get('labels.home_group1');}}</h3>
 
 	           	</div>
 
@@ -62,7 +62,7 @@
 			<div class="panel panel-default">
 	            <div class="panel-heading">
 
-					<h3 class="panel-title">This Montly Event</h3>
+					<h3 class="panel-title">{{Lang::get('labels.home_group2');}}</h3>
 
 	           	</div>
 
@@ -84,7 +84,7 @@
 			<div class="panel panel-default">
 	            <div class="panel-heading">
 
-					<h3 class="panel-title">Next Montly Event</h3>
+					<h3 class="panel-title">{{Lang::get('labels.home_group3');}}</h3>
 
 	           	</div>
 
