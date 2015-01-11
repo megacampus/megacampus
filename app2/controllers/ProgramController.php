@@ -9,8 +9,6 @@
  *
   */
 
-use Megacampus\Storage\Program\ProgramInterface as ProgramInterface;
-use Megacampus\Utils\Url\UtilsInterface as UtilsInterface;
 
 class ProgramController extends \BaseController {
 
@@ -30,27 +28,15 @@ class ProgramController extends \BaseController {
 
 	private $directory_files = "programs";
 
-	private $itemsByPage = 7;
-
-
-	public function __construct(ProgramInterface $program, UtilsInterface $utils)
-	{
-	  $this->program = $program;
-	  $this->utils=$utils;
-	}
-
 
 	public function index()
 	{
 		
-		//Remove the Session Variable;
-		$this->utils->forgetUrlPrevious();
-		//Session::forget('UrlPrevious');
-
+		//Remove All Session Variable;
+		Session::forget('UrlPrevious');
 		//Session::flush();
 		// Get the programa informantion page by page
-		//$programs=Program::paginate(7);
-		$programs=$this->program->paginate($this->itemsByPage);
+		$programs=Program::paginate(7);
 
 		//$programs=Program::take(3)->skip(5)->-get()->paginate(7);
 
@@ -65,7 +51,7 @@ class ProgramController extends \BaseController {
 			->with(
 				array(
 				'programs' 		=> $programs,
-				//'title'			=> 'Program Management',
+				'title'			=> 'Program Management',
 				'create_link'	=> 'Add Program',
 				'label_search'	=> null,
 				'search_value'  => null
@@ -81,9 +67,8 @@ class ProgramController extends \BaseController {
 	public function create()
 	{
 		
-		$this->utils->getUrlPrevious($this->directory_files);
 		//Define the URL to Go Back to the Same Page of the Program List
-		/*if (strpos(Session::get('UrlPrevious'),'page=')!==false){
+		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
 			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
 		}else{
 			if (strpos(URL::previous(),'page=')!==false){
@@ -93,13 +78,13 @@ class ProgramController extends \BaseController {
 			}
 		}
 		//store in the session object the previous URL
-		Session::put('UrlPrevious',$UrlPrevious);*/
+		Session::put('UrlPrevious',$UrlPrevious);
 		
 		//Display the view to add a program
-	  	return View::make($this->directory_files .'/create');
-	  		//->with(array(
-			//	'title'			=> 'Program Management'
-		//));
+	  	return View::make($this->directory_files .'/create')
+	  		->with(array(
+				'title'			=> 'Program Management'
+		));
 
 	}
 
@@ -123,9 +108,9 @@ class ProgramController extends \BaseController {
 				DB::beginTransaction();
 					// store the data to the database
 					$program = new Program;
-					$program->program_id    		= Input::get('program_id');
-					$program->program_name      	= Input::get('program_name');
-					$program->program_description 	= Input::get('program_description');
+					$program->program_id       = Input::get('program_id');
+					$program->program_name      = Input::get('program_name');
+					$program->program_description = Input::get('program_description');
 					$program->save();
 					//store in the session object a message to display in the view
 					Session::flash('message', Lang::get('messages.success'));	
@@ -155,12 +140,9 @@ class ProgramController extends \BaseController {
 	public function show($id)
 	{
 
-		$this->utils->setUrlPrevious();
-		//Session::put('UrlPrevious',URL::previous());
-
+		Session::put('UrlPrevious',URL::previous());
 		// find a program id to access its information
-		 //$program = Program::find($id);
-		$program = $this->program->find($id);
+		 $program = Program::find($id);
         //show program info in the view
         return View::make($this->directory_files .'/show')
             ->with('program', $program);
@@ -177,10 +159,8 @@ class ProgramController extends \BaseController {
 	public function edit($id)
 	{
 
-		$this->utils->getUrlPrevious($this->directory_files);
-
 		//Define the URL to Go Back to the Same Page of the Program List
-		/*if (strpos(Session::get('UrlPrevious'),'page=')!==false){
+		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
 			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
 
 		}else{
@@ -191,10 +171,10 @@ class ProgramController extends \BaseController {
 			}
 		}
 		//store in the session object the previous URL
-		Session::put('UrlPrevious',$UrlPrevious);*/
+		Session::put('UrlPrevious',$UrlPrevious);
 
 		// find a program id to access its information
-		$program = $this->program->find($id);
+		$program = Program::find($id);
         //show the edit form and pass the program
         return View::make($this->directory_files .'/edit')
             ->with('program', $program);
@@ -221,8 +201,7 @@ class ProgramController extends \BaseController {
 			try {
 				
 				DB::beginTransaction();
-					//$program = Program::find($id);
-		            $program = $this->program->find($id);
+		            $program = Program::find($id);
 		            $program->program_id      		= Input::get('program_id');
 		            $program->program_name     		= Input::get('program_name');
 		            $program->program_description 	= Input::get('program_description');
@@ -258,7 +237,7 @@ class ProgramController extends \BaseController {
 	public function destroy($id){
 
 		// find a program id to delete it
-		$program = $this->program->find($id);
+		$program = Program::find($id);
 	
 		//validate if $id was found
 		if (!empty($program->program_id)) {
@@ -293,13 +272,12 @@ class ProgramController extends \BaseController {
 		// Get the string to search in the database
 		$value= Input::get('search_value');
 		// find the string in the database and return the program found
-		//$programs=Program::where('program_id','like','%'.$value.'%')
-		$programs=$this->program->where('program_id','like','%'.$value.'%')
+		$programs=Program::where('program_id','like','%'.$value.'%')
 				->orwhere('program_name','like','%'.$value.'%')
 				->orwhere('program_description','like','%'.$value.'%')
-				->paginate($this->itemsByPage);
+				->paginate(7);
 		// Verify if the user applied a filter via the Search Text		
-		if ($programs->getTotal()!=$this->program->all()->count()){
+		if ($programs->getTotal()!=Program::all()->count()){
 			//if a filter is applied a label Sis display in the view
 			$label_search= $value;
 		}
@@ -313,7 +291,7 @@ class ProgramController extends \BaseController {
 			->with(
 				array(
 				'programs' 		=> $programs,
-				//'title'			=> 'Program Management',
+				'title'			=> 'Program Management',
 				'create_link'	=> 'Add Program',
 				'label_search'	=> $label_search,
 				'search_value'  => $value
@@ -331,7 +309,7 @@ class ProgramController extends \BaseController {
 		try {
 			
 			//get all programs
-			$data=$this->program->all();
+			$data=Program::all();
 			//create a excel files 
 			Excel::create('Programs', function($excel) use($data) {
 				//create a excel sheet
@@ -361,10 +339,9 @@ class ProgramController extends \BaseController {
 	public function selectImportFile() 
 	{ 
 
-		$this->utils->getUrlPrevious($this->directory_files);
-
+		
 		//Define the URL to Go Back to the Same Page of the Program List
-		/*if (strpos(Session::get('UrlPrevious'),'page=')!==false){
+		if (strpos(Session::get('UrlPrevious'),'page=')!==false){
 			$UrlPrevious='programs?' . strstr(Session::get('UrlPrevious'), 'page=');
 
 		}else{
@@ -375,7 +352,7 @@ class ProgramController extends \BaseController {
 			}
 		}
 		//store in the session object the previous URL
-		Session::put('UrlPrevious',$UrlPrevious);*/
+		Session::put('UrlPrevious',$UrlPrevious);
 
 		
         //show the import form 
@@ -412,7 +389,7 @@ class ProgramController extends \BaseController {
 						// Validate if the file uploaded has the ID field
 						if (!empty ($row->program_id)) {
 							// find the id to decide if it wil be an update or add process
-							$program =  $this->program->find($row->id);
+							$program =  Program::find($row->id);
 							//validate if $id was found so UPDATE it
 							if ($program) {
 								$program->program_id      	 	= $row->program_id;
