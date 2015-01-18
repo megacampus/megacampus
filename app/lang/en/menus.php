@@ -6,6 +6,7 @@ return array(
 // Top Navigation Menu
 
 	'dashboard' 			=> 'Dashboard',
+	'facilities' 			=> 'Facilities',
 	'programs'				=> 'Programs',
 	'admissions'  			=> 'Admissions',
 	'employees'     		=> 'Employees',

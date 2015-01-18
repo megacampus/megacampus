@@ -80,6 +80,7 @@
 			
 			<ul class="nav navbar-nav" >
 				<li><a href="#">{{Lang::get('menus.dashboard');}}</a></li>
+				<li><a href="#">{{Lang::get('menus.facilities');}}</a></li>
 				<li><a href="/programs">{{Lang::get('menus.programs');}}</a></li>
 				<li><a href="#">{{Lang::get('menus.admissions');}}</a></li>
 				<li><a href="#">{{Lang::get('menus.employees');}}</a></li>
