@@ -3,9 +3,9 @@
 return array(
 
 	
-	'success' 				=> 'SUCCESS: The process was executed successfully!',
-	'error'					=> 'ERROR:: The process was NOT executed successfully!',
-	'success_add' 			=> 'SUCCESS:: The process add',
+	'success' 				=> 'The process was executed successfully!',
+	'error'					=> 'The process was NOT executed successfully!',
+	'success_add' 			=> 'The process add',
 	'success_update'		=> 'records and update',
 	'successfully'			=> ' successfully!',
 	'error_file_missing'	=> 'ERROR: The import process did not add or update any record successfully!',

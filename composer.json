@@ -15,6 +15,7 @@
 	},
 
 	"autoload": {
+
 		"classmap": [
 			"app/commands",
 			"app/controllers",
@@ -23,6 +24,8 @@
 			"app/database/seeds",
 			"app/tests/TestCase.php",
 			"app/megacampus/storage",
+			"app/megacampus/storage/eloquent",
+			"app/megacampus/storage/program",
 			"app/megacampus/utils"
 		]
 	},

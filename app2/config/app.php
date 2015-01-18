@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'sp',
+	'locale' => 'en',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -122,8 +122,11 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
-		'Way\Generators\GeneratorsServiceProvider'
-				
+		'Way\Generators\GeneratorsServiceProvider',
+
+		//Megacampus Application Service Providers
+		'Megacampus\Storage\StorageServiceProvider',	
+		'Megacampus\Utils\UtilsServiceProvider'		
 
 	),
 

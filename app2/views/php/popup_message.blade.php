@@ -1,7 +1,7 @@
 <!--script to display messages store in the session objet from the backend-->
 
 @if (Session::has('message'))
-	@if (Session::has('error'))
+	@if (Session::get('error')!=0)
  		<p class="alert alert-danger" data-dismiss="alert">
  	@else
 		<p class="alert alert-info" data-dismiss="alert">

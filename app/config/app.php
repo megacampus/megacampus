@@ -52,7 +52,7 @@ return array(
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'sp',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -125,8 +125,8 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 
 		//Megacampus Application Service Providers
-		'Megacampus\Storage\StorageServiceProvider',	
-		'Megacampus\Utils\UtilsServiceProvider'		
+			'Megacampus\Storage\StorageServiceProvider',	
+			'Megacampus\Utils\UtilsServiceProvider'		
 
 	),
 
