@@ -38,7 +38,7 @@ return array(
     'Maatwebsite\\Excel\\Writers\\CellWriter' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/CellWriter.php',
     'Maatwebsite\\Excel\\Writers\\LaravelExcelWriter' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/LaravelExcelWriter.php',
     'Megacampus\\Storage\\Eloquent\\MyAbstractEloquentRepository' => $baseDir . '/app/megacampus/storage/Eloquent/MyAbstractEloquentRepository.php',
-    'Megacampus\\Storage\\Program\\ProgramInterface' => $baseDir . '/app/megacampus/storage/Program/ProgramInterface.php',
+    'Megacampus\\Storage\\Eloquent\\MyEloquentInterface' => $baseDir . '/app/megacampus/storage/Eloquent/MyEloquentInterface.php',
     'Megacampus\\Storage\\Program\\ProgramRepository' => $baseDir . '/app/megacampus/storage/Program/ProgramRepository.php',
     'Megacampus\\Storage\\StorageServiceProvider' => $baseDir . '/app/megacampus/storage/StorageServiceProvider.php',
     'Megacampus\\Utils\\Url\\UtilsInterface' => $baseDir . '/app/megacampus/utils/Url/UtilsInterface.php',

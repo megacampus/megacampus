@@ -1,6 +1,6 @@
-<?php namespace Megacampus\Storage\Program;
+<?php namespace Megacampus\Storage\Eloquent;
  
-interface ProgramInterface {
+interface MyEloquentInterface {
    
   public function all();
   public function paginate($itemsByPage);

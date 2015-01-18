@@ -15,7 +15,7 @@ class StorageServiceProvider extends ServiceProvider {
 			'Megacampus\Storage\Program\EloquentProgramRepository'
 		);*/
 
-		$this->app->bind('Megacampus\Storage\Program\ProgramInterface', function($app)
+		$this->app->bind('Megacampus\Storage\Eloquent\MyEloquentInterface', function($app)
 		{
 			return new ProgramRepository(new Program);
 		});

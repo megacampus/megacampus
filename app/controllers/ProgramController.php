@@ -9,7 +9,7 @@
  *
   */
 
-use Megacampus\Storage\Program\ProgramInterface as ProgramInterface;
+use Megacampus\Storage\Eloquent\MyEloquentInterface as MyEloquentInterface;
 use Megacampus\Utils\Url\UtilsInterface as UtilsInterface;
 
 class ProgramController extends \BaseController {
@@ -33,7 +33,7 @@ class ProgramController extends \BaseController {
 	private $itemsByPage = 7;
 
 
-	public function __construct(ProgramInterface $program, UtilsInterface $utils)
+	public function __construct(MyEloquentInterface $program, UtilsInterface $utils)
 	{
 	  $this->program = $program;
 	  $this->utils=$utils;

@@ -2,11 +2,11 @@
  
 //use Program;
 use Megacampus\Storage\Eloquent\MyAbstractEloquentRepository;
-use Megacampus\Storage\Program\ProgramInterface;
+use Megacampus\Storage\Eloquent\MyEloquentInterface;
 
 use Program;
  
-class ProgramRepository extends MyAbstractEloquentRepository implements ProgramInterface {
+class ProgramRepository extends MyAbstractEloquentRepository implements MyEloquentInterface {
  
  // Properties
 

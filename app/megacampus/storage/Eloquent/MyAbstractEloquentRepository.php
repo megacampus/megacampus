@@ -1,11 +1,9 @@
 <?php namespace Megacampus\Storage\Eloquent;
 
 
-	
 abstract class MyAbstractEloquentRepository {
  
-  
-  public function all()
+    public function all()
   {
     return $this->model->all();
   }
