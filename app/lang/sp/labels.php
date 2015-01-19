@@ -26,4 +26,7 @@ return array(
 	'edit_program'			=> 'Editar Programa',
 	'import_program'		=> 'Importar Programas',
 
+	'facilities_title'		=> 'Módulo de Instalaciones',
+	'academics_title'		=> 'Módulo Academico',
+
 );

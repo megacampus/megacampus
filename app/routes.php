@@ -12,33 +12,31 @@
 */
 
 
-	
-/*Route::get('/', function()
-
-{
-
- return View::make('form');
-
-});*/
-
-
-
-Route::get('programs/{id}/show','ProgramController@show');
-
-Route::get('programs/search','ProgramController@search');
-
-Route::get('programs/export','ProgramController@export');
-
-Route::get('programs/import_file','ProgramController@selectImportFile');
-
-Route::post('programs/import','ProgramController@import');
-
-Route::resource('programs', 'ProgramController');
-
 Route::get('/', function (){
 
 	return View::make ('home/home');
 });
+
+Route::get('/academics', function (){
+
+	return View::make ('academics/academics');
+});
+
+Route::get('/facilities', function (){
+
+	return View::make ('facilities/facilities');
+});
+
+
+// Programs Routes
+Route::get('programs/{id}/show','ProgramController@show');
+Route::get('programs/search','ProgramController@search');
+Route::get('programs/export','ProgramController@export');
+Route::get('programs/import_file','ProgramController@selectImportFile');
+Route::post('programs/import','ProgramController@import');
+Route::resource('programs', 'ProgramController');
+
+
 
 
 

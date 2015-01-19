@@ -108,7 +108,7 @@ class ProgramController extends \BaseController {
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
-	 */
+	 */	
 	public function store()
 	{
 		// validate the fields base on the rules define
@@ -122,10 +122,10 @@ class ProgramController extends \BaseController {
 
 				DB::beginTransaction();
 					// store the data to the database
-					$program = new Program;
-					$program->program_id    		= Input::get('program_id');
-					$program->program_name      	= Input::get('program_name');
-					$program->program_description 	= Input::get('program_description');
+					$program                      = new Program;
+					$program->program_id          = Input::get('program_id');
+					$program->program_name        = Input::get('program_name');
+					$program->program_description = Input::get('program_description');
 					$program->save();
 					//store in the session object a message to display in the view
 					Session::flash('message', Lang::get('messages.success'));	
@@ -424,10 +424,10 @@ class ProgramController extends \BaseController {
 							}
 							// validate no found so ADD it
 							else{
-								$program = new Program;
-								$program->program_id      	 	= $row->program_id;
-								$program->program_name      	= $row->program_name;
-								$program->program_description	= $row->program_description;
+								$program                      = new Program;
+								$program->program_id          = $row->program_id;
+								$program->program_name        = $row->program_name;
+								$program->program_description = $row->program_description;
 								$program->save();
 								$i++;
 							}

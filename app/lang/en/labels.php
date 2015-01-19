@@ -26,4 +26,6 @@ return array(
 	'edit_program'			=> 'Edit Program',
 	'import_program'		=> 'Import Programs',
 
+	'facilities_title'		=> 'Facilities Module',
+	'academics_title'		=> 'Academic Module',
 );

@@ -7,8 +7,7 @@ return array(
 
 	'dashboard' 			=> 'Dashboard',
 	'facilities' 			=> 'Instalaciones',
-	'programs'				=> 'Programas',
-	'admissions'  			=> 'Admisiones',
+	'programs'				=> 'Academico',
 	'employees'     		=> 'Empleados',
 	'inventory'    			=> 'Inventario',
 	'services'    			=> 'Servicios',

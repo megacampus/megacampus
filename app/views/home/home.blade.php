@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<div class="jumbotron" >	
-			<div class="text-center"-->
+			<div class="text-center">
 			    <h1>{{Lang::get('labels.home_title');}}</h1>
 			    <p class="lead">{{Lang::get('labels.home_subtitle');}}</p>
 			</div>

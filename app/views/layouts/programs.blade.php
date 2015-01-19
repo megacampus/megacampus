@@ -88,31 +88,8 @@
 			@show
 		</div>	
 		
-		<div class="collapse navbar-collapse">
-			
-			<ul class="nav navbar-nav" >
-				<li><a href="#">{{Lang::get('menus.dashboard');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.facilities');}}</a></li>
-				<li><a href="/programs">{{Lang::get('menus.programs');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.admissions');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.employees');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.inventory');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.services');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.finances');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.security');}}</a></li>
-				<li><a href="#">{{Lang::get('menus.settings');}}</a></li>
-			</ul>
-			<div class="col-sm-12 col-md-1 pull-right">
-				<ul class="nav navbar-nav navbar-right">	
-					<li>
-						<a href="#">
-							<i class="fa fa-power-off"></i>&nbsp;{{Lang::get('menus.logout');}}
-						</a>
-					</li>
-				</ul>
-			</div>
-			
-		</div>
+		@include('php.navigation_topbar')
+		
 	</div>
 
 	<div id="content"> <!--style="height:770px"-->
@@ -159,52 +136,7 @@
 		</div>
 	</div>
 
-	<!--div id="footer" style="background-color:black;color:white; padding:3px">
-			<div class="container">
-				<div class="row" >
-					<div class="col-sm-6" align="left">
-						<p> MegaCampus (2014-2016) &copy; </p>
-					</div>
-					<div class="col-sm-6" align="right">
-						<p>Code by TMTechnologies&reg</p>
-					</div>
-				</div>
-
-				<div class="row" >
-					<div class="col-sm-3" align="left">
-						
-					</div>
-					<div class="col-sm-3">
-						<p>A complete software to help you to manage the information of your education institute.</p>
-						<p>From a Small Preschool Institute to a Huge University Campus </p>
-					</div>
-					<div class="col-sm-2">
-						<ul>
-							<p>Navigation:</p>
-							<li><a href="#">Company</a></li>
-							<li><a href="#">Products</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">Support</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-2">
-						<ul class="list-unstyled">
-							<p>Follow up:</p>
-							<li><a href="#"><i class="fa fa-twitter"></i>&nbsp;Twitter</a></li>
-							<li><a href="#"><i class="fa fa-facebook"></i>&nbsp;Facebook</a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i>&nbsp;Google +</a></li>
-							<li><a href="#"><i class="fa fa-github"></i>&nbsp;GitHub</a></li>
-							
-						</ul>
-					</div>
-					<div class="col-sm-2" align="left">
-						
-					</div>
-				</div>	
-			</div>
-	</div-->		
-
+	
 </div>
 
 
